@@ -13,8 +13,8 @@ void display(void) {
     // glMatrixMode(GL_MODELVIEW);
     // glLoadIdentity();
     // glTranslatef(x, y, 0);
-    spike.drawSpike(x, y);
-    printf("Spike Printed (%d, %d)\n",x,y);
+    // spike.drawSpike(x, y);
+    // printf("Spike Printed (%d, %d)\n",x,y);
     //glutSwapBuffers();
     // glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, 'A');
     introScreen.drawScreen();

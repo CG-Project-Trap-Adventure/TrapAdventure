@@ -20,7 +20,9 @@ void IntroScreen::drawScreen() {
     
     // glPopMatrix();
     Draw draw = Draw();
+    glColor3f(1.0, 0.0, 0.0);
     draw.drawString(330, 484, 0, 0.75, 0.75, 0.0, 3.0, title);
+    glColor3f(0.5, 0.0, 1.0);
     draw.drawString(1000, 100, 0, 0.15, 0.15, 0.0, 1.5, devansh);
     draw.drawString(1000, 75, 0, 0.15, 0.15, 0.0, 1.5, divyaksh);
 }
