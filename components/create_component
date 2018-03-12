@@ -1,6 +1,6 @@
 #!/bin/bash
 
-component_name = $1
+component_name=$1
 echo $component_name
 mkdir $component_name
 cd $component_name
