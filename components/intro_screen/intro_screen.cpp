@@ -1,5 +1,5 @@
 #include "intro_screen.h"
-#include "draw.h"
+#include "../draw/draw.h"
 
 IntroScreen::IntroScreen() {
     height = 768;
