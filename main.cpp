@@ -9,7 +9,7 @@ GLint length = 20, height = 20;
 GLfloat color[3] = {1.0, 0.0, 0.0};
 
 void display(void) {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // glMatrixMode(GL_MODELVIEW);
     // glLoadIdentity();
     // glTranslatef(x, y, 0);
@@ -23,7 +23,8 @@ void display(void) {
 
 void myinit() {
     glClearColor(1.0, 1.0, 1.0, 1.0);
-    gluOrtho2D(0.0, 1366.0, 0.0, 768.0);
+    glEnable(GL_DEPTH_TEST);
+    glOrtho(0.0, 1366.0, 0.0, 768.0, -10.0 , 10.0);
 }
 
 void keys(int key, int xx, int yy) {
@@ -52,7 +53,7 @@ void myReshape(int w, int h) {
 
 int main(int argc, char **argv) {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
     glutCreateWindow("Spike maker");
     glutFullScreen();
     glutDisplayFunc(display);
