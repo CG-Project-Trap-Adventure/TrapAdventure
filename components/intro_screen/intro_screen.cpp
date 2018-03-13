@@ -29,4 +29,8 @@ void IntroScreen::drawScreen() {
     glColor3f(0.5, 0.0, 1.0);
     draw.drawString(1000, 100, 0, 0.15, 0.15, 0.0, 1.5, devansh);
     draw.drawString(1000, 75, 0, 0.15, 0.15, 0.0, 1.5, divyaksh);
+	glColor3f(0.118, 0.565, 1.000);		//DodgerBlue
+	draw.drawBox(300, 75, 0, 200, 35);
+	glColor3f(1.0, 1.0, 1.0);
+	draw.drawString(310, 82, 2, 0.2, 0.2, 0.0, 1.5, "Instructions >>");
 }

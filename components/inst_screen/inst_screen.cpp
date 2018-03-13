@@ -17,8 +17,8 @@ void InstScreen::drawScreen() {
     glColor3f(1.0, 0.0, 0.0);
     draw.drawString(width/2-150.0, height-150.0, 0.0, 0.5, 0.5, 0.0, 2.0, "Instruction");
     glColor3f(0.416, 0.353, 0.804);     //SlateBlue
-    draw.drawString(100.0, height-200.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst1);
-    draw.drawString(100.0, height-240.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst2);
-    draw.drawString(100.0, height-280.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst3);
-    draw.drawString(100.0, height-320.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst4);
+    draw.drawString(100.0, height-220.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst1);
+    draw.drawString(100.0, height-260.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst2);
+    draw.drawString(100.0, height-300.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst3);
+    draw.drawString(100.0, height-340.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst4);
 }
