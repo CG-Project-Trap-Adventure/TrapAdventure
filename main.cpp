@@ -1,12 +1,26 @@
 #include "components/trapadv.h"
+// #include "components/inst_screen/inst_screen.h"
 // #include <GL/glut.h>
 // #include <stdio.h>
 
+state= {
+    "inst_screen": true
+}
+
 Spike spike = Spike();
 IntroScreen introScreen = IntroScreen();
+InstScreen instScreen = InstScreen();
 GLint x = 20, y = 20;
 GLint length = 20, height = 20;
 GLfloat color[3] = {1.0, 0.0, 0.0};
+
+enum screen_state = {
+    _intro_screen = 0,
+    _inst_screen,
+    _game_screen
+};
+
+int screen = _intro_screen;
 
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -17,7 +31,14 @@ void display(void) {
     // printf("Spike Printed (%d, %d)\n",x,y);
     //glutSwapBuffers();
     // glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, 'A');
-    introScreen.drawScreen();
+    switch(screen) {
+    case _intro_screen:
+        introScreen.drawScreen();
+        break;
+    case _inst_screen:
+        instScreen.drawScreen();
+        break;
+    }
     glFlush();
 }
 
@@ -27,17 +48,23 @@ void myinit() {
     glOrtho(0.0, 1366.0, 0.0, 768.0, -10.0 , 10.0);
 }
 
-void keys(int key, int xx, int yy) {
-    switch(key) {
-    case GLUT_KEY_LEFT:
-        x-=5;
-        printf("HELLO");
-        // glTranslatef(-4.0, 0.0, 0.0);
-        break;
-    case GLUT_KEY_RIGHT:
-        x+=5;
-        // glTranslatef(+4.0, 0.0, 0.0);
-        break;
+void mouse(int xx, int yy) {
+    // switch(key) {
+    // case GLUT_KEY_LEFT:
+    //     x-=5;
+    //     printf("HELLO");
+    //     // glTranslatef(-4.0, 0.0, 0.0);
+    //     break;
+    // case GLUT_KEY_RIGHT:
+    //     x+=5;
+    //     // glTranslatef(+4.0, 0.0, 0.0);
+    //     break;
+    // }
+    switch(screen) {
+    case _intro_screen:
+        switch(key) {
+        case GLUT_
+        } 
     }
     display();
 }
@@ -57,7 +84,8 @@ int main(int argc, char **argv) {
     glutCreateWindow("Spike maker");
     glutFullScreen();
     glutDisplayFunc(display);
-    glutSpecialFunc(keys);
+    //glutSpecialFunc(keys);
+    glutMouseFunc(mouse);
     myinit();
     glutMainLoop();
 }
