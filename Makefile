@@ -1,11 +1,63 @@
-all: compile run
+FLAGS := -lGL -lGLU -lglut -lm -I.
+CXX := g++ $(FLAGS)
+MAIN = main.cpp
 
-compile:
-	g++ -o main main.cpp components/spike/spike.cpp components/intro_screen/intro_screen.cpp components/inst_screen/inst_screen.cpp components/draw/draw.cpp components/level1/level1.cpp -lGL -lGLU -lglut -lm -I.
-# draw: components/draw/draw.cpp
-# 	g++ -c -o components/draw/draw.o components/draw/draw.cpp -lGL -lGLU  -lglut -lm -I.
+SPIKE_CPP = components/spike/spike.cpp
+SPIKE_H = components/spike/spike.h
+SPIKE_O = components/spike/spike.o
+FINAL_BUILD = $(SPIKE_O)
+
+INTRO_SCREEN_CPP = components/intro_screen/intro_screen.cpp
+INTRO_SCREEN_H = components/intro_screen/intro_screen.h
+INTRO_SCREEN_O = components/intro_screen/intro_screen.o
+FINAL_BUILD += $(INTRO_SCREEN_O)
+
+INST_SCREEN_CPP = components/inst_screen/inst_screen.cpp
+INST_SCREEN_H = components/inst_screen/inst_screen.h
+INST_SCREEN_O = components/inst_screen/inst_screen.o
+FINAL_BUILD += $(INST_SCREEN_O)
+
+DRAW_CPP = components/draw/draw.cpp
+DRAW_H = components/draw/draw.h
+DRAW_O = components/draw/draw.o
+FINAL_BUILD += $(DRAW_O)
+
+LEVEL1_CPP = components/level1/level1.cpp
+LEVEL1_H = components/level1/level1.h
+LEVEL1_O = components/level1/level1.o
+FINAL_BUILD += $(LEVEL1_O)
+
+all: draw intro_screen inst_screen spike level1 main run
+
 run:
 	./main
+
+# compile:
+# 	g++ -o main main.cpp components/spike/spike.cpp components/intro_screen/intro_screen.cpp components/inst_screen/inst_screen.cpp components/draw/draw.cpp components/level1/level1.cpp -lGL -lGLU -lglut -lm -I.
+# draw: components/draw/draw.cpp
+# 	g++ -c -o components/draw/draw.o components/draw/draw.cpp -lGL -lGLU  -lglut -lm -I.
+
+main:
+	$(CXX) -o main $(FINAL_BUILD) $(MAIN)
+
+spike: $(SPIKE_H) $(SPIKE_CPP)
+	$(CXX) -c -o $(SPIKE_O) $(SPIKE_CPP)
+
+intro_screen: $(INTRO_SCREEN_CPP) $(INTRO_SCREEN_H)
+	$(CXX) -c -o $(INTRO_SCREEN_O) $(INTRO_SCREEN_CPP)
+
+inst_screen: $(INST_SCREEN_H) $(INST_SCREEN_CPP)
+	$(CXX) -c -o $(INST_SCREEN_O) $(INST_SCREEN_CPP)
+
+draw: $(DRAW_H) $(DRAW_CPP)
+	$(CXX) -c -o $(DRAW_O) $(DRAW_CPP)
+
+level1: $(LEVEL1_CPP) $(LEVEL1_H)
+	$(CXX) -c -o $(LEVEL1_O) $(LEVEL1_CPP)
+
+clean:
+	echo $(FINAL_BUILD)
+	rm -f $(FINAL_BUILD)
 
 divyaksh_example:
 	g++ -o example example.cpp -lGL -lGLU -lglut -lm -I.

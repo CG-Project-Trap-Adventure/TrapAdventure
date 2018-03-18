@@ -1,4 +1,3 @@
-#include <GL/glut.h>
 #include "components/trapadv.h"
 // #include "components/inst_screen/inst_screen.h"
 // #include <GL/glut.h>
