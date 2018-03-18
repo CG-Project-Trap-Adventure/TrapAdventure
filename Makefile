@@ -1,5 +1,5 @@
 FLAGS := -lGL -lGLU -lglut -lm -I.
-CXX := g++ $(FLAGS)
+# Always put the flags in the end or it al goes haywire
 MAIN = main.cpp
 
 SPIKE_CPP = components/spike/spike.cpp
@@ -37,8 +37,8 @@ run:
 # draw: components/draw/draw.cpp
 # 	g++ -c -o components/draw/draw.o components/draw/draw.cpp -lGL -lGLU  -lglut -lm -I.
 
-main:
-	$(CXX) -o main $(FINAL_BUILD) $(MAIN)
+main: $(MAIN)
+	$(CXX) -o main $(FINAL_BUILD) $(MAIN) $(FLAGS)
 
 spike: $(SPIKE_H) $(SPIKE_CPP)
 	$(CXX) -c -o $(SPIKE_O) $(SPIKE_CPP)
@@ -57,7 +57,7 @@ level1: $(LEVEL1_CPP) $(LEVEL1_H)
 
 clean:
 	echo $(FINAL_BUILD)
-	rm -f $(FINAL_BUILD)
+	rm -f $(FINAL_BUILD) main
 
 divyaksh_example:
 	g++ -o example example.cpp -lGL -lGLU -lglut -lm -I.

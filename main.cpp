@@ -27,7 +27,7 @@ enum ScreenStates {
 float win_x = 0.0;
 float win_y = 0.0;
 
-ScreenStates screen = _intro_screen;
+ScreenStates screen = _inst_screen;
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -95,7 +95,7 @@ void mouse(int btn, int state, int xx, int yy) {
 		case _intro_screen:
 		switch(btn) {
 			case GLUT_LEFT_BUTTON:
-			if(xx >= 300*1920/1366 && xx <= 500*1920/1366 && yy >= 658*1080/768 && yy <= 693*1080/768) {
+			if(xx >= 300*win_w/1366 && xx <= 500*win_w/1366 && yy >= 658*win_h/768 && yy <= 693*win_h/768) {
 				screen = _inst_screen;
 			}
 			else {
@@ -107,7 +107,7 @@ void mouse(int btn, int state, int xx, int yy) {
 
 		case _inst_screen:
 			if(btn == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
-				if(xx >= 300*1920/1366 && xx <= 500*1920/1366 && yy >= 658*1080/768 && yy <= 693*1080/768) {
+				if(xx >= 300*win_w/1366 && xx <= 500*win_w/1366 && yy >= 658*win_h/768 && yy <= 693*win_h/768) {
 					screen = _game_screen;
 				}
 			}
