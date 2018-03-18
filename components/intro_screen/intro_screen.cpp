@@ -33,4 +33,5 @@ void IntroScreen::drawScreen() {
 	draw.drawBox(300, 75, 0, 200, 35);
 	glColor3f(1.0, 1.0, 1.0);
 	draw.drawString(310, 82, 2, 0.2, 0.2, 0.0, 1.5, "Instructions >>");
+    // printf("Drawing the intro screen...\n");
 }

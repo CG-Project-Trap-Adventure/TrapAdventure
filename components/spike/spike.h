@@ -9,6 +9,6 @@ class Spike{
     
     public:
         Spike();
-        Spike(int, int);
-        void drawSpike(int, int);
+        Spike(int l, int h);
+        void drawSpike(int x, int y);
 };

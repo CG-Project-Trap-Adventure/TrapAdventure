@@ -6,6 +6,6 @@ using namespace std;
 
 class Draw {
     public:
-        void drawString(float, float, float, float, float, float, float, string);
-        void drawBox(float, float, float, float, float);
+        void drawString(float tx, float ty, float tz, float sx, float sy, float sz, float lw, string text);
+        void drawBox(float xx, float yy, float zz, float w, float h);
 };

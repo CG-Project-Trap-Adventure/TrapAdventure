@@ -1,8 +1,8 @@
 #include "spike.h"
 
 Spike::Spike() {
-    length = 200;    //Keep this as a multiple of 2
-    height = 200;
+    length = 20;    //Keep this as a multiple of 2
+    height = 20;
     color[0] = 1.0;
     color[1] = 0.0;
     color[2] = 0.0;
@@ -26,7 +26,7 @@ Spike::Spike(int l, int h){
 
 */
 void Spike::drawSpike(int x, int y) {
-    glColor3fv(color);
+    // glColor3fv(color);
     GLfloat vertices[3][2];
     vertices[0][0] = (GLfloat)(x);
     vertices[0][1] = (GLfloat)(y);
