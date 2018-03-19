@@ -1,5 +1,6 @@
 #include <GL/glut.h>
 #include "components/trapadv.h"
+#include "states.h"
 // #include "components/inst_screen/inst_screen.h"
 // #include <GL/glut.h>
 // #include <stdio.h>
@@ -120,13 +121,17 @@ void mouse(int btn, int state, int xx, int yy) {
 }
 
 void keys(int key, int xx, int yy) {
-	if(screen == _game_screen)
+	if(screen == _game_screen){
 		key_map[key] = true;
+		lastKey = key;
+		// printf("%d\n", lastKey);
+	}
 }
 
 void keys_up(int key, int xx, int yy) {
-	if(screen == _game_screen)
+	if(screen == _game_screen){
 		key_map[key] = false;
+	}
 }
 
 void moveSpike() {
@@ -149,6 +154,7 @@ void myidle() {
 int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+	glutInitWindowSize(1366, 768);
 	glutCreateWindow("Spike maker");
 	glutDisplayFunc(display);
 	glutSpecialFunc(keys);
@@ -157,6 +163,6 @@ int main(int argc, char **argv) {
 	glutIdleFunc(myidle);		// Whenever you put GLUT_DOUBLE Please put this line
 	myinit();
 	glutReshapeFunc(myReshape);
-	glutFullScreen();
+	// glutFullScreen();
 	glutMainLoop();
 }

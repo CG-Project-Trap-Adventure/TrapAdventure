@@ -1,6 +1,9 @@
 FLAGS := -lGL -lGLU -lglut -lm -I.
+DEBUG_OPTION := -g
 # Always put the flags in the end or it all goes haywire
-# CXX = g++ $(FLAGS)
+CXX = g++ $(DEBUG_OPTION)
+TRAPADV_H = components/trapadv.h
+STATES_H = states.h
 MAIN = main.cpp
 MAIN_O = main
 
@@ -44,7 +47,7 @@ run:
 # draw: components/draw/draw.cpp
 # 	g++ -c -o components/draw/draw.o components/draw/draw.cpp -lGL -lGLU  -lglut -lm -I.
 
-main: $(MAIN) $(FINAL_BUILD)
+main: $(MAIN) $(FINAL_BUILD) $(STATES_H) $(TRAPADV_H)
 	$(CXX) -o $(MAIN_O) $(FINAL_BUILD) $(MAIN) $(FLAGS)
 
 spike: $(SPIKE_H) $(SPIKE_CPP)
