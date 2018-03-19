@@ -6,11 +6,11 @@ void drawLevel() {
     Draw draw = Draw();
     Spike spike = Spike();
     glColor3f(0.545, 0.271, 0.075);     //SaddleBrown
-    draw.drawBox(0.0, 0.0, 0.0, 3000.0, 200.0);
-    glColor3f(0.412, 0.412, 0.412);     //DimGray
-    for (int i = 30; i < 3000; i+=60)
+    draw.drawBox(0.0, 0.0, 0.0, 10000.0, 200.0);
+    glColor3f(0.863, 0.863, 0.863);     //Gainsboro
+    for (int i = 30; i < 10000; i+=100)
     {
-        spike.drawSpike(i, 200);
+        spike.drawSpike(i, 200, -1.0);
     }
     // cout<<"Drawing the level"<<endl;
 }

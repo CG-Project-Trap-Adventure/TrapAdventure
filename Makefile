@@ -1,6 +1,8 @@
 FLAGS := -lGL -lGLU -lglut -lm -I.
-# Always put the flags in the end or it al goes haywire
+# Always put the flags in the end or it all goes haywire
+# CXX = g++ $(FLAGS)
 MAIN = main.cpp
+MAIN_O = main
 
 SPIKE_CPP = components/spike/spike.cpp
 SPIKE_H = components/spike/spike.h
@@ -27,18 +29,23 @@ LEVEL1_H = components/level1/level1.h
 LEVEL1_O = components/level1/level1.o
 FINAL_BUILD += $(LEVEL1_O)
 
+R2D3_CPP = components/r2d3/r2d3.cpp
+R2D3_H = components/r2d3/r2d3.h
+R2D3_O = components/r2d3/r2d3.o
+FINAL_BUILD += $(R2D3_O)
+
 all: draw intro_screen inst_screen spike level1 main run
 
 run:
-	./main
+	./$(MAIN_O)
 
 # compile:
 # 	g++ -o main main.cpp components/spike/spike.cpp components/intro_screen/intro_screen.cpp components/inst_screen/inst_screen.cpp components/draw/draw.cpp components/level1/level1.cpp -lGL -lGLU -lglut -lm -I.
 # draw: components/draw/draw.cpp
 # 	g++ -c -o components/draw/draw.o components/draw/draw.cpp -lGL -lGLU  -lglut -lm -I.
 
-main: $(MAIN)
-	$(CXX) -o main $(FINAL_BUILD) $(MAIN) $(FLAGS)
+main: $(MAIN) $(FINAL_BUILD)
+	$(CXX) -o $(MAIN_O) $(FINAL_BUILD) $(MAIN) $(FLAGS)
 
 spike: $(SPIKE_H) $(SPIKE_CPP)
 	$(CXX) -c -o $(SPIKE_O) $(SPIKE_CPP)
@@ -55,9 +62,13 @@ draw: $(DRAW_H) $(DRAW_CPP)
 level1: $(LEVEL1_CPP) $(LEVEL1_H)
 	$(CXX) -c -o $(LEVEL1_O) $(LEVEL1_CPP)
 
+r2d3: $(R2D3_CPP) $(R2D3_H)
+	$(CXX) -c -o $(R2D3_O) $(R2D3_CPP)
+
 clean:
 	echo $(FINAL_BUILD)
-	rm -f $(FINAL_BUILD) main
+	rm -f $(FINAL_BUILD) $(MAIN_O)
 
-divyaksh_example:
+divyaksh_example: example.cpp
 	g++ -o example example.cpp -lGL -lGLU -lglut -lm -I.
+	./example

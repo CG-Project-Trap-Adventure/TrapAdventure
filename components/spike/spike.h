@@ -10,5 +10,5 @@ class Spike{
     public:
         Spike();
         Spike(int l, int h);
-        void drawSpike(int x, int y);
+        void drawSpike(int x, int y, float z);
 };

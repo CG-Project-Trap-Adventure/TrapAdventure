@@ -8,6 +8,8 @@
 Spike spike = Spike();
 IntroScreen introScreen = IntroScreen();
 InstScreen instScreen = InstScreen();
+R2D3 r2d3 = R2D3();
+
 GLint x = 20, y = 20;
 GLint length = 20, height = 20;
 GLfloat color[3] = {1.0, 0.0, 0.0};
@@ -27,7 +29,7 @@ enum ScreenStates {
 float win_x = 0.0;
 float win_y = 0.0;
 
-ScreenStates screen = _inst_screen;
+ScreenStates screen = _game_screen;
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -59,6 +61,7 @@ void display(void) {
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
 			drawLevel();
+			r2d3.draw(win_x+win_w/2.0, 225.0, 0);
 		break;
 
 	}
