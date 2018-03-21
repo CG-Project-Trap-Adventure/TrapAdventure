@@ -1,6 +1,5 @@
 #include <GL/glut.h>
 #include "components/trapadv.h"
-#include "states.h"
 // #include "components/inst_screen/inst_screen.h"
 // #include <GL/glut.h>
 // #include <stdio.h>
@@ -54,15 +53,15 @@ void display(void) {
 		instScreen.drawScreen();
 		break;
 		case _game_screen:
-			if(key_map[GLUT_KEY_RIGHT]) win_x+=speed;
-			if(key_map[GLUT_KEY_LEFT]) win_x-=speed;
-			glMatrixMode(GL_PROJECTION);
-			glLoadIdentity();
-			glOrtho(win_x, win_x + win_w, 0.0, win_h, -10.0, 10.0);
-			glMatrixMode(GL_MODELVIEW);
-			glLoadIdentity();
-			drawLevel();
-			r2d3.draw(win_x+win_w/2.0, 225.0, 0);
+		if(key_map[GLUT_KEY_RIGHT]) win_x+=speed;
+		if(key_map[GLUT_KEY_LEFT]) win_x-=speed;
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(win_x, win_x + win_w, 0.0, win_h, -10.0, 10.0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		drawLevel();
+		r2d3.draw(win_x+win_w/2.0, 225.0, 0);
 		break;
 
 	}
@@ -110,12 +109,12 @@ void mouse(int btn, int state, int xx, int yy) {
 		break;
 
 		case _inst_screen:
-			if(btn == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
-				if(xx >= 300*win_w/1366 && xx <= 500*win_w/1366 && yy >= 658*win_h/768 && yy <= 693*win_h/768) {
-					screen = _game_screen;
-				}
+		if(btn == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
+			if(xx >= 300*win_w/1366 && xx <= 500*win_w/1366 && yy >= 658*win_h/768 && yy <= 693*win_h/768) {
+				screen = _game_screen;
 			}
-			break;
+		}
+		break;
 	}
 	display();
 }
@@ -123,8 +122,11 @@ void mouse(int btn, int state, int xx, int yy) {
 void keys(int key, int xx, int yy) {
 	if(screen == _game_screen){
 		key_map[key] = true;
-		lastKey = key;
-		// printf("%d\n", lastKey);
+		if(key == GLUT_KEY_RIGHT || key == GLUT_KEY_LEFT) {
+			r2d3.setKey(key);
+		}
+		// lastKey = key;
+		// printf("Key is %d\n", lastKey);
 	}
 }
 
@@ -155,7 +157,7 @@ int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(1366, 768);
-	glutCreateWindow("Spike maker");
+	glutCreateWindow("Trap Adventure");
 	glutDisplayFunc(display);
 	glutSpecialFunc(keys);
 	glutSpecialUpFunc(keys_up);
@@ -163,6 +165,6 @@ int main(int argc, char **argv) {
 	glutIdleFunc(myidle);		// Whenever you put GLUT_DOUBLE Please put this line
 	myinit();
 	glutReshapeFunc(myReshape);
-	// glutFullScreen();
+	glutFullScreen();
 	glutMainLoop();
 }
