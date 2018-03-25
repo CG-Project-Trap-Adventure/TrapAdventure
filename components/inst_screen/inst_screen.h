@@ -11,6 +11,7 @@ class InstScreen {
         string inst2;
         string inst3;
         string inst4;
+		string inst5;
     public:
         InstScreen();
         void drawScreen();
