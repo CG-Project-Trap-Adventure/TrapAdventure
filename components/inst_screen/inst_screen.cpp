@@ -8,6 +8,7 @@ InstScreen::InstScreen() {
     inst2 = "2. Press right arrow to go front";
     inst3 = "3. Press up arrow to jump";
     inst4 = "4. Press down arrow to duck";
+	inst5 = "5. Press 'q' anytime to quit";
 }
 
 void InstScreen::drawScreen() {
@@ -21,6 +22,7 @@ void InstScreen::drawScreen() {
     draw.drawString(100.0, height-260.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst2);
     draw.drawString(100.0, height-300.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst3);
     draw.drawString(100.0, height-340.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst4);
+	draw.drawString(100.0, height-380.0, 0.0, 0.3, 0.3, 0.0, 1.0, inst5);
     glColor3f(0.118, 0.565, 1.000);		//DodgerBlue
 	draw.drawBox(300, 75, 0, 200, 35);
 	glColor3f(1.0, 1.0, 1.0);
