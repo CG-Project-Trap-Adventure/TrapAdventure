@@ -37,6 +37,10 @@ R2D3_H = components/r2d3/r2d3.h
 R2D3_O = components/r2d3/r2d3.o
 FINAL_BUILD += $(R2D3_O)
 
+STATES_H = states.h
+# STATES_CPP = states.cpp
+# STATES_O = states.o
+
 all: draw intro_screen inst_screen spike level1 main run
 
 run:

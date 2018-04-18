@@ -1,10 +1,11 @@
 #include "r2d3.h"
 #include "../draw/draw.h"
+#include "../../states.h"
 
 R2D3::R2D3() {
 	radius = 25;
 	cap_radius = 20;
-	lastKey = GLUT_KEY_RIGHT;
+	// lastKey = GLUT_KEY_RIGHT;
 }
 
 void R2D3::setKey(int key) {

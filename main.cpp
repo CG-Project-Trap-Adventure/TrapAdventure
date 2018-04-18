@@ -4,6 +4,7 @@
 // #include <GL/glut.h>
 // #include <stdio.h>
 #include <map>
+#include "states.h"
 
 Spike spike = Spike();
 IntroScreen introScreen = IntroScreen();
@@ -14,22 +15,22 @@ GLint x = 20, y = 20;
 GLint length = 20, height = 20;
 GLfloat color[3] = {1.0, 0.0, 0.0};
 
-int speed = 7;
+// int speed = 7;
 float win_w = 1366.0;
 float win_h = 768.0;
 
 map <int, bool> key_map;
 
-enum ScreenStates {
-	_intro_screen = 0,
-	_inst_screen,
-	_game_screen
-};
+// enum ScreenStates {
+// 	_intro_screen = 0,
+// 	_inst_screen,
+// 	_game_screen
+// };
 
 float win_x = 0.0;
 float win_y = 0.0;
 
-ScreenStates screen = _game_screen;
+// ScreenStates screen = _game_screen;
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
