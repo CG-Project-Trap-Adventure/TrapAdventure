@@ -3,7 +3,7 @@ DEBUG_OPTION := -g
 # Always put the flags in the end or it all goes haywire
 CXX = g++ $(DEBUG_OPTION)
 TRAPADV_H = components/trapadv.h
-STATES_H = states.h
+# STATES_H = states.h
 MAIN = main.cpp
 MAIN_O = main
 
@@ -37,10 +37,9 @@ R2D3_H = components/r2d3/r2d3.h
 R2D3_O = components/r2d3/r2d3.o
 FINAL_BUILD += $(R2D3_O)
 
-STATES_O = states.o
-STATES_CPP = states.cpp
 STATES_H = states.h
-FINAL_BUILD += $(STATES_O)
+# STATES_CPP = states.cpp
+# STATES_O = states.o
 
 all: draw intro_screen inst_screen spike level1 main run
 
@@ -52,7 +51,7 @@ run:
 # draw: components/draw/draw.cpp
 # 	g++ -c -o components/draw/draw.o components/draw/draw.cpp -lGL -lGLU  -lglut -lm -I.
 
-main: $(MAIN) $(FINAL_BUILD) $(STATES_H) $(TRAPADV_H)
+main: $(MAIN) $(FINAL_BUILD) $(TRAPADV_H)
 	$(CXX) -o $(MAIN_O) $(FINAL_BUILD) $(MAIN) $(FLAGS)
 
 spike: $(SPIKE_H) $(SPIKE_CPP)
