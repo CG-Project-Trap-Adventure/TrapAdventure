@@ -12,6 +12,11 @@ SPIKE_H = components/spike/spike.h
 SPIKE_O = components/spike/spike.o
 FINAL_BUILD = $(SPIKE_O)
 
+PLATFORM_CPP = components/platform/platform.cpp
+PLATFORM_H = components/platform/platform.h
+PLATFORM_O = components/platform/platform.o
+FINAL_BUILD = $(PLATFORM_O)
+
 INTRO_SCREEN_CPP = components/intro_screen/intro_screen.cpp
 INTRO_SCREEN_H = components/intro_screen/intro_screen.h
 INTRO_SCREEN_O = components/intro_screen/intro_screen.o
@@ -41,7 +46,7 @@ STATES_H = states.h
 # STATES_CPP = states.cpp
 # STATES_O = states.o
 
-all: draw intro_screen inst_screen spike level1 main run
+all: draw intro_screen inst_screen spike platform level1 main run
 
 run:
 	./$(MAIN_O)
@@ -56,6 +61,9 @@ main: $(MAIN) $(FINAL_BUILD) $(TRAPADV_H)
 
 spike: $(SPIKE_H) $(SPIKE_CPP)
 	$(CXX) -c -o $(SPIKE_O) $(SPIKE_CPP)
+
+platform: $(PLATFORM_H) $(PLATFORM_CPP)
+	$(CXX) -c -o $(PLATFORM_O) $(PLATFORM_CPP)
 
 intro_screen: $(INTRO_SCREEN_CPP) $(INTRO_SCREEN_H)
 	$(CXX) -c -o $(INTRO_SCREEN_O) $(INTRO_SCREEN_CPP)

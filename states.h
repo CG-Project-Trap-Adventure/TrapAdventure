@@ -16,4 +16,6 @@ enum ScreenStates {
 	_game_screen
 };
 
+static int death_state = 0;	// 1-activated 0-deactivated
+
 static ScreenStates screen = _game_screen;

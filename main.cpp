@@ -3,7 +3,7 @@
 #include "components/trapadv.h"
 #include "states.h"
 
-Spike spike = Spike();
+// Spike spike = Spike();
 IntroScreen introScreen = IntroScreen();
 InstScreen instScreen = InstScreen();
 R2D3 r2d3 = R2D3();
