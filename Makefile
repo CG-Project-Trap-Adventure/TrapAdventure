@@ -37,6 +37,11 @@ R2D3_H = components/r2d3/r2d3.h
 R2D3_O = components/r2d3/r2d3.o
 FINAL_BUILD += $(R2D3_O)
 
+STATES_O = states.o
+STATES_CPP = states.cpp
+STATES_H = states.h
+FINAL_BUILD += $(STATES_O)
+
 all: draw intro_screen inst_screen spike level1 main run
 
 run:
@@ -67,6 +72,9 @@ level1: $(LEVEL1_CPP) $(LEVEL1_H)
 
 r2d3: $(R2D3_CPP) $(R2D3_H)
 	$(CXX) -c -o $(R2D3_O) $(R2D3_CPP)
+
+states: $(STATES_CPP) $(STATES_H)
+	$(CXX) -c -o $(STATES_O) $(STATES_CPP)
 
 clean:
 	echo $(FINAL_BUILD)

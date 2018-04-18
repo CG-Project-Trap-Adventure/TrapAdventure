@@ -21,16 +21,16 @@ float win_h = 768.0;
 
 map <int, bool> key_map;
 
-enum ScreenStates {
-	_intro_screen = 0,
-	_inst_screen,
-	_game_screen
-};
+// enum ScreenStates {
+// 	_intro_screen = 0,
+// 	_inst_screen,
+// 	_game_screen
+// };
 
 float win_x = 0.0;
 float win_y = 0.0;
 
-ScreenStates screen = _game_screen;
+// ScreenStates screen = _game_screen;
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
