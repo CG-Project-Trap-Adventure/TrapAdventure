@@ -1,4 +1,5 @@
 #include "spike.h"
+#include "../../states.h"
 
 Spike::Spike() {
     length = 20;    //Keep this as a multiple of 2
@@ -16,10 +17,11 @@ Spike::Spike(int x, int y, int z, int l, int h){
     height = h;
 }
 
-Spike::Spike(int x, int y, int z){
+Spike::Spike(int x, int y, int z, int id){
     xx = x;
     yy = y;
     zz = z;
+	sid = id;
     length = 20;
     height = 20;
 }
@@ -35,7 +37,6 @@ Shape of you(r spike)
            ***********
           *************
    (x,y) ***************  (x+length, y)
-
 */
 void Spike::drawSpike() {
     // glColor3fv(color);
@@ -56,6 +57,17 @@ void Spike::drawSpike() {
     glEnd();
 }
 
-// void Spike::spikeCollision() {
-//     // Collision detection logic
-// }
+void Spike::spikeCollision() {
+	int flag = 1;
+	cout << r2d3_x << "," << r2d3_y << "\n";
+	if(r2d3_x + 40 < xx || xx + length < r2d3_x - 25) {
+		flag = 0;
+	}
+	if(r2d3_y > yy + height || r2d3_y + 25 + 20 < yy) {
+		flag = 0;
+	}
+
+	if(flag) {
+		cout << "Collision at " << sid << "\n";
+	}
+}

@@ -16,8 +16,8 @@ GLfloat color[3] = {1.0, 0.0, 0.0};
 int window_id;
 // int speed = 7;
 // int dir = 0;		// 0 : UP, 1: DOWN
-float win_w = 1366.0;
-float win_h = 768.0;
+// float win_w = 1366.0;
+// float win_h = 768.0;
 // float win_x = 0.0;
 // float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
 

@@ -8,11 +8,13 @@ class Spike{
         int xx;
         int yy;
         int zz;
+		int sid;
         GLfloat color[3];
 
     public:
         Spike();
         Spike(int x, int y, int z, int l, int h);
-        Spike(int x, int y, int z);
+        Spike(int x, int y, int z, int id);
         void drawSpike();
+		void spikeCollision();
 };
