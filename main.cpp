@@ -7,6 +7,7 @@
 IntroScreen introScreen = IntroScreen();
 InstScreen instScreen = InstScreen();
 R2D3 r2d3 = R2D3();
+// static int lastKey = GLUT_KEY_RIGHT;
 
 GLint x = 20, y = 20;
 GLint length = 20, height = 20;
@@ -55,6 +56,10 @@ void display(void) {
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
+		if(level1_loaded == 0){
+			setLevel();
+			level1_loaded = 1;
+		}
 		drawLevel();
 
 		if(key_map[GLUT_KEY_UP] == false) {

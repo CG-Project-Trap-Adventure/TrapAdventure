@@ -2,6 +2,9 @@
 #include "../draw/draw.h"
 #include "../../states.h"
 
+Platform::Platform() {
+}
+
 Platform::Platform(int xx, int yy, int zz, int l, int h) {
   length = l;
   height = h;

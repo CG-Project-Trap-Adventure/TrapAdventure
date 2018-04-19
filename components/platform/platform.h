@@ -11,6 +11,7 @@ private:
   int y;
   int z;
 public:
+  Platform();
   Platform(int xx, int yy, int zz, int l, int h);
   void drawPlatform();
   void platformCollision();

@@ -1,10 +1,12 @@
-// For now it is empty
+#include <GL/glut.h>
 
 static int lastKey = GLUT_KEY_RIGHT;
 
-static int relative_constant = 7; // A constant value to decide spacing of objects and other things
+static int level1_loaded = 0;
+
+static int relative_constant = 5; // A constant value to decide spacing of objects and other things
                                   // Many movements depend on its value
-static int speed = 1 * relative_constant;
+static int speed = 2 * relative_constant;
 static int jump_speed = 2 * relative_constant;
 static float win_x = 0.0;
 static float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height

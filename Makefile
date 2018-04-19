@@ -15,7 +15,7 @@ FINAL_BUILD = $(SPIKE_O)
 PLATFORM_CPP = components/platform/platform.cpp
 PLATFORM_H = components/platform/platform.h
 PLATFORM_O = components/platform/platform.o
-FINAL_BUILD = $(PLATFORM_O)
+FINAL_BUILD += $(PLATFORM_O)
 
 INTRO_SCREEN_CPP = components/intro_screen/intro_screen.cpp
 INTRO_SCREEN_H = components/intro_screen/intro_screen.h

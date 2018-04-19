@@ -3,4 +3,5 @@
 
 using namespace std;
 
+void setLevel();
 void drawLevel();

@@ -19,6 +19,7 @@ void R2D3::draw(float x, float y, float z) {
 	// draw.drawCircle(x, y, z, radius, false);	// Makes circle more smooth // But also makes the cap weird so...
 
 	glColor3f(0.91, 0.62, 0.11);    //Orangish yello (CP)
+	cout << lastKey << endl;
 	if(lastKey == GLUT_KEY_LEFT) {
 		glPushMatrix();
 		glTranslatef(x - radius * sin(30.0 * draw.PI / 180.0), y + radius * cos(30.0 * draw.PI / 180.0), 5);

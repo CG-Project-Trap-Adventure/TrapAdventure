@@ -5,10 +5,14 @@ class Spike{
     private:
         int length;
         int height;
+        int xx;
+        int yy;
+        int zz;
         GLfloat color[3];
-    
+
     public:
         Spike();
-        Spike(int l, int h);
-        void drawSpike(int x, int y, float z);
+        Spike(int x, int y, int z, int l, int h);
+        Spike(int x, int y, int z);
+        void drawSpike();
 };
