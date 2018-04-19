@@ -18,8 +18,8 @@ int window_id;
 // int dir = 0;		// 0 : UP, 1: DOWN
 float win_w = 1366.0;
 float win_h = 768.0;
-// float win_x = 0.0;
-// float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
+float win_x = 0.0;
+float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
 
 map <int, bool> key_map;
 
@@ -32,7 +32,7 @@ map <int, bool> key_map;
 // float win_x = 0.0;
 // float win_y = 0.0;
 
-// ScreenStates screen = _game_screen;
+ScreenStates screen = _game_screen;
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

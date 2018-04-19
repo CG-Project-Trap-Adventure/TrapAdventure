@@ -1,6 +1,6 @@
 #include "platform.h"
 #include "../draw/draw.h"
-#include "../../states.h"
+// #include "../../states.h"
 
 Platform::Platform() {
 }
