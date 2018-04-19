@@ -56,6 +56,6 @@ void Spike::drawSpike() {
     glEnd();
 }
 
-// void Spike::spikeCollision() {
-//     // Collision detection logic
-// }
+void Spike::spikeCollision() {
+    // Collision detection logic
+}

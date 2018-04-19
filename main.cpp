@@ -73,7 +73,7 @@ void display(void) {
 }
 
 void mouse(int btn, int state, int xx, int yy) {
-	cout << xx << ", " << yy << "\n";
+	// cout << xx << ", " << yy << "\n";
 	switch(screen) {
 		case _intro_screen:
 		switch(btn) {
@@ -112,7 +112,7 @@ void keys(int key, int xx, int yy) {
 			r2d3.setKey(key);
 		}
 		if(key == GLUT_KEY_UP) {
-			cout << "UP pressed\n";
+			// cout << "UP pressed\n";
 		}
 	}
 }
@@ -124,7 +124,7 @@ void keys_up(int key, int xx, int yy) {
 }
 
 void myReshape(int w, int h) {
-	printf("(%d,%d)\n", w, h);
+	// printf("(%d,%d)\n", w, h);
 	win_h = h;
 	win_w = w;
 	glViewport(0,0,w,h);
@@ -132,9 +132,11 @@ void myReshape(int w, int h) {
 }
 
 void myidle() {
+
+	// To calculate the jumping of r2d3
 	if(key_map[GLUT_KEY_UP] == true) {
 		// cout << "UP key true\n";
-		if(win_y >= 300) {
+		if(win_y >= max_y) {
 			dir = 1;
 		}
 
@@ -143,13 +145,16 @@ void myidle() {
 		} else {
 			win_y -= jump_speed;
 		}
-		cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
+		// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
 
-		if(win_y == 225.0) {
+		if(win_y == min_y) {
 			key_map[GLUT_KEY_UP] = false;
 			dir = 0;
 		}
 	}
+
+	// Collision detection of the level1
+	level1CollisionDetection();
 
 	glutPostRedisplay();
 }

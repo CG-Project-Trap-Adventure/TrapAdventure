@@ -11,6 +11,8 @@ static int jump_speed = 2 * relative_constant;
 static float win_x = 0.0;
 static float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
 static int dir = 0;		// 0 : UP, 1: DOWN
+static int min_y = 225;
+static int max_y = 350;
 
 enum ScreenStates {
 	_intro_screen = 0,

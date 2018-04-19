@@ -31,3 +31,17 @@ void drawLevel() {
     }
     // cout<<"Drawing the level"<<endl;
 }
+
+void level1CollisionDetection() {
+  // Collision detection for all the assets (platform and spike) is called here
+  // This function is called by the glutIdleFunc()
+  // Because it is called by glutIdleFunc there might be some delay in actual collision and its detection
+
+  for(int i = 0; i < nSpike; i++) {
+    spike[i].spikeCollision();
+  }
+  for(int i = 0; i < nPlatform; i++) {
+    platform[i].platformCollision();
+  }
+
+}

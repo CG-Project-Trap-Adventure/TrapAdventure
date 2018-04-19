@@ -5,3 +5,4 @@ using namespace std;
 
 void setLevel();
 void drawLevel();
+void level1CollisionDetection();
