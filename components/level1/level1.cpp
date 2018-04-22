@@ -29,7 +29,7 @@ void drawLevel() {
 	for(int i = 0; i < nPlatform; i++) {
 		platform[i].drawPlatform();
 	}
-	glColor3f(0.863, 0.863, 0.863);     //Gainsboro
+	glColor3f(0.663, 0.663, 0.663);     //DarkGray
 	for(int i = 0; i < nSpike; i++) {
 		spike[i].drawSpike();
 	}
