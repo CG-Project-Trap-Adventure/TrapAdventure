@@ -79,6 +79,6 @@ void Spike::spikeCollision() {
 	}
 	if(flag) {
 		// cout << "Collision at " << sid << "\n";
-		screen = _intro_screen;
+		screen = _death_screen;
 	}
 }

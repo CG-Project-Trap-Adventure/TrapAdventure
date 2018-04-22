@@ -27,6 +27,11 @@ INST_SCREEN_H = components/inst_screen/inst_screen.h
 INST_SCREEN_O = components/inst_screen/inst_screen.o
 FINAL_BUILD += $(INST_SCREEN_O)
 
+DEATH_SCREEN_CPP = components/death_screen/death_screen.cpp
+DEATH_SCREEN_H = components/death_screen/death_screen.h
+DEATH_SCREEN_O = components/death_screen/death_screen.o
+FINAL_BUILD += $(DEATH_SCREEN_O)
+
 DRAW_CPP = components/draw/draw.cpp
 DRAW_H = components/draw/draw.h
 DRAW_O = components/draw/draw.o
@@ -70,6 +75,9 @@ intro_screen: $(INTRO_SCREEN_CPP) $(INTRO_SCREEN_H)
 
 inst_screen: $(INST_SCREEN_H) $(INST_SCREEN_CPP)
 	$(CXX) -c -o $(INST_SCREEN_O) $(INST_SCREEN_CPP)
+
+death_screen: $(DEATH_SCREEN_H) $(DEATH_SCREEN_CPP)
+	$(CXX) -c -o $(DEATH_SCREEN_O) $(DEATH_SCREEN_CPP)
 
 draw: $(DRAW_H) $(DRAW_CPP)
 	$(CXX) -c -o $(DRAW_O) $(DRAW_CPP)

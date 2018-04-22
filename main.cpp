@@ -6,6 +6,7 @@
 // Spike spike = Spike();
 IntroScreen introScreen = IntroScreen();
 InstScreen instScreen = InstScreen();
+DeathScreen deathScreen = DeathScreen();
 R2D3 r2d3 = R2D3();
 // static int lastKey = GLUT_KEY_RIGHT;
 
@@ -35,7 +36,7 @@ map <int, bool> key_map;
 // float win_x = 0.0;
 // float win_y = 0.0;
 
-ScreenStates screen = _game_screen;
+ScreenStates screen = _intro_screen;
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -71,6 +72,14 @@ void display(void) {
 			r2d3.draw(win_x + win_w / 2.0, win_y, 0);
 		}
 		break;
+
+		case _death_screen:
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0.0, win_w, 0.0, win_h, -10.0, 10.0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		deathScreen.drawScreen();
 	}
 
 	r2d3_x = win_x + 1366.0 / 2.0;

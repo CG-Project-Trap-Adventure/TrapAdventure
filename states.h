@@ -24,7 +24,8 @@ static int max_y = 350;
 enum ScreenStates {
 	_intro_screen = 0,
 	_inst_screen,
-	_game_screen
+	_game_screen,
+	_death_screen
 };
 extern ScreenStates screen;
 
