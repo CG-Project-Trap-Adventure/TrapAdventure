@@ -1,5 +1,5 @@
 FLAGS := -lGL -lGLU -lglut -lm -I.
-DEBUG_OPTION := -g
+DEBUG_OPTION := -g -std=c++11
 # Always put the flags in the end or it all goes haywire
 CXX = g++ $(DEBUG_OPTION)
 TRAPADV_H = components/trapadv.h

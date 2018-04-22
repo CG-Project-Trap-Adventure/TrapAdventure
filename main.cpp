@@ -21,6 +21,9 @@ float win_h = 768.0;
 float win_x = 0.0;
 float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
 
+float r2d3_x;
+float r2d3_y;
+
 map <int, bool> key_map;
 
 // enum ScreenStates {
@@ -69,6 +72,10 @@ void display(void) {
 		}
 		break;
 	}
+
+	r2d3_x = win_x + 1366.0 / 2.0;
+	r2d3_y = win_y;
+
 	glutSwapBuffers();
 }
 

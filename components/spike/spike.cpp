@@ -67,10 +67,10 @@ void Spike::spikeCollision() {
 	// cout << "Check for " << sid << "\n";
 	// cout << level1_loaded << "\n";
 	int flag = 1;
-	float r2d3_x = win_x + 1366.0 / 2.0, r2d3_y = win_y;
+	// float r2d3_x = win_x + 1366.0 / 2.0, r2d3_y = win_y;
 
-	cout << r2d3_x << "," << r2d3_y << "\n";
-	cout << xx << "," << yy << "\n";
+	// cout << "Spike " << r2d3_x << "," << r2d3_y << "\n";
+	// cout << xx << "," << yy << "\n";
 	if(r2d3_x + 40 < xx || xx + length < r2d3_x - 25) {
 		flag = 0;
 	}
@@ -78,7 +78,7 @@ void Spike::spikeCollision() {
 		flag = 0;
 	}
 	if(flag) {
-		cout << "Collision at " << sid << "\n";
+		// cout << "Collision at " << sid << "\n";
 		screen = _intro_screen;
 	}
 }
