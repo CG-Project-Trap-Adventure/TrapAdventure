@@ -13,19 +13,12 @@ unordered_map <int, vector <int>> spike_pos;
 
 void setLevel() {
 	for(int i = 0; i < nSpike; i++) {
-<<<<<<< HEAD
-		spike[i] = Spike(i * 200 + 30, 200, -1.0, i);
-	}
-	for(int i = 0; i < nPlatform; i++) {
-		platform[i] = Platform(0.0, 0.0, 0.0, 10000.0, 200.0);
-=======
 		int sx = i * 200 + 30;
 		spike[i] = Spike(sx, 200, -1.0, i);
 		spike_pos[sx / 1000].push_back(i);
 	}
 	for(int i = 0; i < nPlatform; i++) {
 		platform[i] = Platform(0.0, 0.0, 0.0, 10000.0, 200.0);	// Main Platform
->>>>>>> divyaksh
 	}
 }
 
@@ -36,14 +29,6 @@ void drawLevel() {
 	for(int i = 0; i < nPlatform; i++) {
 		platform[i].drawPlatform();
 	}
-<<<<<<< HEAD
-	glColor3f(0.863, 0.863, 0.863);     //Gainsboro
-	for (int i = 0; i < nSpike; i++)
-	{
-		spike[i].drawSpike();
-	}
-	// cout<<"Drawing the level"<<endl;
-=======
 	glColor3f(0.663, 0.663, 0.663);     //DarkGray
 	for(int i = 0; i < nSpike; i++) {
 		spike[i].drawSpike();
@@ -72,6 +57,4 @@ void level1CollisionDetection() {
 	for(int i = 0; i < nPlatform; i++) {
 		platform[i].platformCollision();
 	}
-
->>>>>>> divyaksh
 }

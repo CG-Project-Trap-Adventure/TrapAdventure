@@ -1,13 +1,7 @@
 #include "spike.h"
 #include "../../states.h"
-<<<<<<< HEAD
-=======
 #include <iostream>
 using namespace std;
-
-// extern float win_x;
-// extern float win_y;
->>>>>>> divyaksh
 
 Spike::Spike() {
 	length = 20;    //Keep this as a multiple of 2
@@ -26,26 +20,16 @@ Spike::Spike(int x, int y, int z, int l, int h){
 }
 
 Spike::Spike(int x, int y, int z, int id){
-<<<<<<< HEAD
-    xx = x;
-    yy = y;
-    zz = z;
-	sid = id;
-    length = 20;
-    height = 20;
-=======
 	xx = x;
 	yy = y;
 	zz = z;
 	sid = id;
 	length = 20;
 	height = 20;
->>>>>>> divyaksh
 }
 
 /*
 Shape of you(r spike)
-<<<<<<< HEAD
     (x+(length/2), y+height)
                 *
                ***
@@ -55,19 +39,8 @@ Shape of you(r spike)
            ***********
           *************
    (x,y) ***************  (x+length, y)
-=======
-(x+(length/2), y+height)
-*
-***
-*****
-*******
-*********
-***********
-*************
-(x,y) ***************  (x+length, y)
-
->>>>>>> divyaksh
 */
+
 void Spike::drawSpike() {
 	// glColor3fv(color);
 	GLfloat vertices[3][3];
@@ -88,19 +61,6 @@ void Spike::drawSpike() {
 }
 
 void Spike::spikeCollision() {
-<<<<<<< HEAD
-	int flag = 1;
-	cout << r2d3_x << "," << r2d3_y << "\n";
-	if(r2d3_x + 40 < xx || xx + length < r2d3_x - 25) {
-		flag = 0;
-	}
-	if(r2d3_y > yy + height || r2d3_y + 25 + 20 < yy) {
-		flag = 0;
-	}
-
-	if(flag) {
-		cout << "Collision at " << sid << "\n";
-=======
 	// cout << "Check for " << sid << "\n";
 	// cout << level1_loaded << "\n";
 	int flag = 1;
@@ -117,6 +77,5 @@ void Spike::spikeCollision() {
 	if(flag) {
 		// cout << "Collision at " << sid << "\n";
 		screen = _death_screen;
->>>>>>> divyaksh
 	}
 }

@@ -21,9 +21,6 @@ static int dir = 0;		// 0 : UP, 1: DOWN
 static int min_y = 225;
 static int max_y = 350;
 
-static float r2d3_x = win_x + win_w / 2.0;
-static float r2d3_y = win_y;
-
 enum ScreenStates {
 	_intro_screen = 0,
 	_inst_screen,
