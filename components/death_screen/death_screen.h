@@ -4,14 +4,12 @@
 
 using namespace std;
 
-class IntroScreen {
+class DeathScreen {
     private:
         int height;
         int width;
-        string title;
-        string devansh;
-        string divyaksh;
+        string text;
     public:
-        IntroScreen();
+        DeathScreen();
         void drawScreen();
 };

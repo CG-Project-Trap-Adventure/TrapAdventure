@@ -6,6 +6,7 @@
 // Spike spike = Spike();
 IntroScreen introScreen = IntroScreen();
 InstScreen instScreen = InstScreen();
+DeathScreen deathScreen = DeathScreen();
 R2D3 r2d3 = R2D3();
 // static int lastKey = GLUT_KEY_RIGHT;
 
@@ -16,10 +17,13 @@ GLfloat color[3] = {1.0, 0.0, 0.0};
 int window_id;
 // int speed = 7;
 // int dir = 0;		// 0 : UP, 1: DOWN
-// float win_w = 1366.0;
-// float win_h = 768.0;
-// float win_x = 0.0;
-// float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
+float win_w = 1366.0;
+float win_h = 768.0;
+float win_x = 0.0;
+float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
+
+float r2d3_x;
+float r2d3_y;
 
 map <int, bool> key_map;
 
@@ -32,7 +36,7 @@ map <int, bool> key_map;
 // float win_x = 0.0;
 // float win_y = 0.0;
 
-// ScreenStates screen = _game_screen;
+ScreenStates screen = _intro_screen;
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -68,12 +72,24 @@ void display(void) {
 			r2d3.draw(win_x + win_w / 2.0, win_y, 0);
 		}
 		break;
+
+		case _death_screen:
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0.0, win_w, 0.0, win_h, -10.0, 10.0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		deathScreen.drawScreen();
 	}
+
+	r2d3_x = win_x + 1366.0 / 2.0;
+	r2d3_y = win_y;
+
 	glutSwapBuffers();
 }
 
 void mouse(int btn, int state, int xx, int yy) {
-	cout << xx << ", " << yy << "\n";
+	// cout << xx << ", " << yy << "\n";
 	switch(screen) {
 		case _intro_screen:
 		switch(btn) {
@@ -112,7 +128,7 @@ void keys(int key, int xx, int yy) {
 			r2d3.setKey(key);
 		}
 		if(key == GLUT_KEY_UP) {
-			cout << "UP pressed\n";
+			// cout << "UP pressed\n";
 		}
 	}
 }
@@ -124,7 +140,7 @@ void keys_up(int key, int xx, int yy) {
 }
 
 void myReshape(int w, int h) {
-	printf("(%d,%d)\n", w, h);
+	// printf("(%d,%d)\n", w, h);
 	win_h = h;
 	win_w = w;
 	glViewport(0,0,w,h);
@@ -132,9 +148,11 @@ void myReshape(int w, int h) {
 }
 
 void myidle() {
+
+	// To calculate the jumping of r2d3
 	if(key_map[GLUT_KEY_UP] == true) {
 		// cout << "UP key true\n";
-		if(win_y >= 300) {
+		if(win_y >= max_y) {
 			dir = 1;
 		}
 
@@ -143,13 +161,16 @@ void myidle() {
 		} else {
 			win_y -= jump_speed;
 		}
-		cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
+		// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
 
-		if(win_y == 225.0) {
+		if(win_y == min_y) {
 			key_map[GLUT_KEY_UP] = false;
 			dir = 0;
 		}
 	}
+
+	// Collision detection of the level1
+	level1CollisionDetection();
 
 	glutPostRedisplay();
 }

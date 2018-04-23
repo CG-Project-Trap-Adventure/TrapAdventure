@@ -16,5 +16,5 @@ class Spike{
         Spike(int x, int y, int z, int l, int h);
         Spike(int x, int y, int z, int id);
         void drawSpike();
-		void spikeCollision();
+        void spikeCollision();
 };
