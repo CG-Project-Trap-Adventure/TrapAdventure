@@ -48,12 +48,12 @@ void level1CollisionDetection() {
 	// spike[0].spikeCollision();
 
 	int r2d3_pos = r2d3_x / 1000;
-	cout << r2d3_x << "\t" << r2d3_pos << "\t";
+	// cout << r2d3_x << "\t" << r2d3_pos << "\t";
 	for(auto vit : spike_pos[r2d3_pos]) {
-		cout << vit << " ";
+		// cout << vit << " ";
 		spike[vit].spikeCollision();
 	}
-	cout << "\n";
+	// cout << "\n";
 	for(int i = 0; i < nPlatform; i++) {
 		platform[i].platformCollision();
 	}

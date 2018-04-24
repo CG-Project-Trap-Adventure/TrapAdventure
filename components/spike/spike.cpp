@@ -1,6 +1,7 @@
 #include "spike.h"
 #include "../../states.h"
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 Spike::Spike() {
@@ -25,7 +26,7 @@ Spike::Spike(int x, int y, int z, int id){
 	zz = z;
 	sid = id;
 	length = 20;
-	height = 20;
+	height = 40;
 }
 
 /*
@@ -64,18 +65,52 @@ void Spike::spikeCollision() {
 	// cout << "Check for " << sid << "\n";
 	// cout << level1_loaded << "\n";
 	int flag = 1;
+	int h = 40;
 	// float r2d3_x = win_x + 1366.0 / 2.0, r2d3_y = win_y;
 
 	// cout << "Spike " << r2d3_x << "," << r2d3_y << "\n";
 	// cout << xx << "," << yy << "\n";
-	if(r2d3_x + 40 < xx || xx + length < r2d3_x - 25) {
-		flag = 0;
+	// if(r2d3_x + 40 < xx || xx + length < r2d3_x - 25) {
+	// 	flag = 0;
+	// }
+	// if(r2d3_y - 25 > yy + height || r2d3_y + 25 + 20 < yy) {
+	// 	flag = 0;
+	// }
+	// if(flag) {
+	// 	// cout << "Collision at " << sid << "\n";
+	// 	screen = _death_screen;
+	// }
+	float x1, y1, x2, y2;
+	if(r2d3_x + 25 <= xx + (20 / 2)) {
+		x1 = xx;
+	} else {
+		x1 = xx + 20;
 	}
-	if(r2d3_y - 25 > yy + height || r2d3_y + 25 + 20 < yy) {
-		flag = 0;
-	}
-	if(flag) {
-		// cout << "Collision at " << sid << "\n";
-		screen = _death_screen;
+	y1 = yy;
+	x2 = xx + (20 / 2);
+	y2 = yy + h;
+
+	if(yy + h > r2d3_y - 25) {
+		float a, b, c, m, k;
+		m = (x2 - x1) / (y2 - y1);
+		k = r2d3_x - x1;
+		a = m * m + 1;
+		b = -(2 * r2d3_y + 2 * k * m + 2 * m * m * y1);
+		c = m * m * y1 * y1 + k * k + 2 * k * m * y1 + r2d3_y * r2d3_y - 625;
+
+		// Delta = b^2 - 4ac
+		// Delta < 0 ==> No collision
+
+		float delta = b * b - 4 * a * c;
+		cout << delta << "\n";
+		if(delta >= 0) {
+			float root1, root2;
+			root1 = (-b + sqrt(delta)) / (2 * a);
+			root2 = (-b - sqrt(delta)) / (2 * a);
+			if((root1 <= yy + h && root1 >= yy) || (root2 <= yy + h && root2 >= yy)) {
+				screen = _death_screen;
+				for(auto i = 0; i < 999999999; i++);
+			}
+		}
 	}
 }

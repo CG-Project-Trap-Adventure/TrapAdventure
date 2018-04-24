@@ -9,10 +9,10 @@ static int lastKey = GLUT_KEY_RIGHT;
 
 static int level1_loaded = 0;
 
-static int relative_constant = 5; // A constant value to decide spacing of objects and other things
+static int relative_constant = 1; // A constant value to decide spacing of objects and other things
                                   // Many movements depend on its value
-static int speed = 2 * relative_constant;
-static int jump_speed = 2 * relative_constant;
+static int speed = 1 * relative_constant;
+static int jump_speed = 1 * relative_constant;
 extern float win_x;
 extern float win_y;		// Just for now.... Later thinking of using an array with x and y values of every change in height
 extern float r2d3_x;
