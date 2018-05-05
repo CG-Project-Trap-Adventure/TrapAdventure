@@ -13,12 +13,16 @@ unordered_map <int, vector <int>> spike_pos;
 
 void setLevel() {
 	for(int i = 0; i < nSpike; i++) {
-		int sx = i * 200 + 30;
+		int sx = i * 40 * 5;
 		spike[i] = Spike(sx, 200, -1.0, i);
 		spike_pos[sx / 1000].push_back(i);
 	}
 	for(int i = 0; i < nPlatform; i++) {
-		platform[i] = Platform(0.0, 0.0, 0.0, 10000.0, 200.0);	// Main Platform
+		// int start_x, end_x;
+		// for(int j = start_x / 1000; j < end_x / 1000; i++) {
+		// 	plat_pos[j].push_back(i);
+		// }
+		platform[i] = Platform(0.0, 0.0, 0.0, 1000.0, 200.0);	// Main Platform
 	}
 }
 
@@ -31,7 +35,7 @@ void drawLevel() {
 	}
 	glColor3f(0.663, 0.663, 0.663);     //DarkGray
 	for(int i = 0; i < nSpike; i++) {
-		spike[i].drawSpike();
+		// spike[i].drawSpike();
 	}
 	// cout<<"Drawing the level"<<endl;
 }
@@ -51,7 +55,7 @@ void level1CollisionDetection() {
 	// cout << r2d3_x << "\t" << r2d3_pos << "\t";
 	for(auto vit : spike_pos[r2d3_pos]) {
 		// cout << vit << " ";
-		spike[vit].spikeCollision();
+		// spike[vit].spikeCollision();
 	}
 	// cout << "\n";
 	for(int i = 0; i < nPlatform; i++) {

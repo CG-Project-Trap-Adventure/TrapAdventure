@@ -48,10 +48,11 @@ R2D3_O = components/r2d3/r2d3.o
 FINAL_BUILD += $(R2D3_O)
 
 STATES_H = states.h
-# STATES_CPP = states.cpp
-# STATES_O = states.o
+STATES_CPP = states.cpp
+STATES_O = states.o
+FINAL_BUILD += $(STATES_O)
 
-all: draw intro_screen inst_screen spike platform level1 main run
+all: states draw intro_screen inst_screen spike platform level1 main run
 
 run:
 	./$(MAIN_O)

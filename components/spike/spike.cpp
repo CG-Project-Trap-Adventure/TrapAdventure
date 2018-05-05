@@ -39,7 +39,7 @@ Shape of you(r spike)
             *********
            ***********
           *************
-   (x,y) ***************  (x+length, y)
+  (x, y) ***************  (x+length, y)
 */
 
 void Spike::drawSpike() {
@@ -64,7 +64,6 @@ void Spike::drawSpike() {
 void Spike::spikeCollision() {
 	// cout << "Check for " << sid << "\n";
 	// cout << level1_loaded << "\n";
-	int flag = 1;
 	int h = 40;
 	// float r2d3_x = win_x + 1366.0 / 2.0, r2d3_y = win_y;
 
@@ -80,7 +79,7 @@ void Spike::spikeCollision() {
 	// 	// cout << "Collision at " << sid << "\n";
 	// 	screen = _death_screen;
 	// }
-	float x1, y1, x2, y2;
+	float x1, y1, x2, y2;	// Points of spike edge
 	if(r2d3_x + 25 <= xx + (20 / 2)) {
 		x1 = xx;
 	} else {
@@ -90,7 +89,7 @@ void Spike::spikeCollision() {
 	x2 = xx + (20 / 2);
 	y2 = yy + h;
 
-	if(yy + h > r2d3_y - 25) {
+	if(yy + h > r2d3_y - 21) {
 		float a, b, c, m, k;
 		m = (x2 - x1) / (y2 - y1);
 		k = r2d3_x - x1;
@@ -102,14 +101,14 @@ void Spike::spikeCollision() {
 		// Delta < 0 ==> No collision
 
 		float delta = b * b - 4 * a * c;
-		cout << delta << "\n";
+		// cout << delta << "\n";
 		if(delta >= 0) {
 			float root1, root2;
 			root1 = (-b + sqrt(delta)) / (2 * a);
 			root2 = (-b - sqrt(delta)) / (2 * a);
 			if((root1 <= yy + h && root1 >= yy) || (root2 <= yy + h && root2 >= yy)) {
 				screen = _death_screen;
-				for(auto i = 0; i < 999999999; i++);
+				// for(auto i = 0; i < 999999999; i++);
 			}
 		}
 	}

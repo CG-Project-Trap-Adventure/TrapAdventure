@@ -16,11 +16,13 @@ GLfloat color[3] = {1.0, 0.0, 0.0};
 
 int window_id;
 // int speed = 7;
-// int dir = 0;		// 0 : UP, 1: DOWN
-float win_w = 1366.0;
-float win_h = 768.0;
-float win_x = 0.0;
-float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
+// int down_dir = 0;		// 0 : UP, 1: DOWN
+// float win_w = 1366.0;
+// float win_h = 768.0;
+// float win_x = 0.0;
+// float win_y = 225.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
+// int min_y = 225;
+// int max_y = min_y + 125;
 
 float r2d3_x;
 float r2d3_y;
@@ -36,7 +38,7 @@ map <int, bool> key_map;
 // float win_x = 0.0;
 // float win_y = 0.0;
 
-ScreenStates screen = _game_screen;
+// ScreenStates screen = _game_screen;
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -51,8 +53,14 @@ void display(void) {
 		break;
 
 		case _game_screen:
-		if(key_map[GLUT_KEY_RIGHT]) win_x += speed;
-		if(key_map[GLUT_KEY_LEFT]) win_x -= speed;
+		glutSetCursor(GLUT_CURSOR_NONE);
+		if(key_map[GLUT_KEY_RIGHT] && block_r == false) {
+			win_x += speed;
+		}
+		if(key_map[GLUT_KEY_LEFT] && block_l == false) {
+			win_x -= speed;
+		}
+		block_r = block_l = false;
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -66,11 +74,15 @@ void display(void) {
 		}
 		drawLevel();
 
-		if(key_map[GLUT_KEY_UP] == false) {
-			r2d3.draw(win_x + win_w / 2.0, 225.0, 0);
-		} else {
-			r2d3.draw(win_x + win_w / 2.0, win_y, 0);
-		}
+		r2d3.draw(win_x + win_w / 2.0, win_y, 0);
+
+		// Not required !!!!! XD
+		// if(key_map[GLUT_KEY_UP] == false) {
+		// 	r2d3.draw(win_x + win_w / 2.0, win_y, 0);		// R2D3 main body radius = 21
+		// } else {
+		// 	cout << win_y << "\n";
+		// 	r2d3.draw(win_x + win_w / 2.0, win_y, 0);
+		// }
 		break;
 
 		case _death_screen:
@@ -128,7 +140,7 @@ void keys(int key, int xx, int yy) {
 			r2d3.setKey(key);
 		}
 		if(key == GLUT_KEY_UP) {
-			// cout << "UP pressed\n";
+			cout << win_y << " UP \n";
 		}
 	}
 }
@@ -143,34 +155,47 @@ void myReshape(int w, int h) {
 	// printf("(%d,%d)\n", w, h);
 	win_h = h;
 	win_w = w;
+	cout << win_h << "\t" << win_w << "\n";
 	glViewport(0,0,w,h);
 	glutPostRedisplay();
 }
 
 void myidle() {
-
 	// To calculate the jumping of r2d3
 	if(key_map[GLUT_KEY_UP] == true) {
 		// cout << "UP key true\n";
 		if(win_y >= max_y) {
-			dir = 1;
+			down_dir = true;
 		}
 
-		if(dir == 0) {
+		if(down_dir == false) {
 			win_y += jump_speed;
 		} else {
 			win_y -= jump_speed;
 		}
 		// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
 
-		if(win_y == min_y) {
+		if(win_y - 21 == min_y) {
 			key_map[GLUT_KEY_UP] = false;
-			dir = 0;
+			down_dir = false;
+		}
+
+	} else {
+		if(win_y - 21 > min_y) {
+			// cout << "SPCL case " << win_y << " " << min_y << "\n";
+			key_map[GLUT_KEY_UP] = true;
+			down_dir = true;
 		}
 	}
 
 	// Collision detection of the level1
 	level1CollisionDetection();
+
+	// if(win_y > min_y) {
+	// 	if(win_y - 25 != min_y)
+	// 		key_map[GLUT_KEY_UP] = true;
+	// 	down_dir = 1;
+	// }
 
 	glutPostRedisplay();
 }

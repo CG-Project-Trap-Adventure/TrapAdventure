@@ -5,14 +5,14 @@ using namespace std;
 
 class Platform {
 private:
-  int length;
-  int height;
-  int x;  // The bottom-left corner
-  int y;
-  int z;
+	int length;
+	int height;
+	int xx;  // The bottom-left corner
+	int yy;
+	int zz;
 public:
-  Platform();
-  Platform(int xx, int yy, int zz, int l, int h);
-  void drawPlatform();
-  void platformCollision();
+	Platform();
+	Platform(int x, int y, int z, int l, int h);
+	void drawPlatform();
+	void platformCollision();
 };

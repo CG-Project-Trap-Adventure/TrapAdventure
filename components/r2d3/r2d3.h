@@ -5,9 +5,11 @@ using namespace std;
 
 class R2D3 {
     private:
-    int radius;
-    int cap_radius;
+    float radius;
+    float cap_radius;
+    float arm_l;
 	int lastKey;
+    float rangle;
 
     public:
     R2D3();
