@@ -9,10 +9,10 @@ using namespace std;
 
 extern int level1_loaded;
 
-extern int relative_constant; // A constant value to decide spacing of objects and other things
+extern float relative_constant; // A constant value to decide spacing of objects and other things
                                   // Many movements depend on its value
-extern int speed;
-extern int jump_speed;
+extern float speed;
+extern float jump_speed;
 extern float win_w;
 extern float win_h;
 extern float win_x;
@@ -20,10 +20,12 @@ extern float win_y;		// Just for now.... Later thinking of using an array with x
 extern float r2d3_x;
 extern float r2d3_y;
 extern bool down_dir;		// false : UP, true: DOWN
-extern int min_y;
-extern int max_y;
+extern bool right_dir;		// false : LEFT, true : RIGHT
+extern float min_y;
+extern float max_y;
 extern bool block_r;
 extern bool block_l;
+extern bool safe;		// R2D3 is on platform
 
 enum ScreenStates {
 	_intro_screen = 0,

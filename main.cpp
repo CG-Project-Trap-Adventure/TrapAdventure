@@ -56,9 +56,11 @@ void display(void) {
 		glutSetCursor(GLUT_CURSOR_NONE);
 		if(key_map[GLUT_KEY_RIGHT] && block_r == false) {
 			win_x += speed;
+			right_dir = true;
 		}
 		if(key_map[GLUT_KEY_LEFT] && block_l == false) {
 			win_x -= speed;
+			right_dir = false;
 		}
 		block_r = block_l = false;
 
@@ -165,6 +167,7 @@ void myidle() {
 	if(key_map[GLUT_KEY_UP] == true) {
 		// cout << "UP key true\n";
 		if(win_y >= max_y) {
+			cout << "Down started" << "\n";
 			down_dir = true;
 		}
 
@@ -189,6 +192,8 @@ void myidle() {
 	}
 
 	// Collision detection of the level1
+	safe = false;
+	max_y = min_y + 125;
 	level1CollisionDetection();
 
 	// if(win_y > min_y) {

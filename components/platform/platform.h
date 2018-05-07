@@ -4,15 +4,17 @@
 using namespace std;
 
 class Platform {
-private:
+// private:
+public:
 	int length;
 	int height;
 	int xx;  // The bottom-left corner
 	int yy;
 	int zz;
-public:
+	int pid;
+// public:
 	Platform();
-	Platform(int x, int y, int z, int l, int h);
+	Platform(int x, int y, int z, int l, int h, int id);
 	void drawPlatform();
 	void platformCollision();
 };

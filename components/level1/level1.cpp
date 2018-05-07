@@ -5,7 +5,7 @@
 #include "../../states.h"
 
 const int nSpike = 100;
-const int nPlatform = 1;
+const int nPlatform = 3;
 static Platform platform[nPlatform];
 static Spike spike[nSpike];
 
@@ -17,16 +17,17 @@ void setLevel() {
 		spike[i] = Spike(sx, 200, -1.0, i);
 		spike_pos[sx / 1000].push_back(i);
 	}
-	for(int i = 0; i < nPlatform; i++) {
-		// int start_x, end_x;
-		// for(int j = start_x / 1000; j < end_x / 1000; i++) {
-		// 	plat_pos[j].push_back(i);
-		// }
-		platform[i] = Platform(0.0, 0.0, 0.0, 1000.0, 200.0);	// Main Platform
-	}
+	// for(int i = 0; i < nPlatform; i++) {
+	// int start_x, end_x;
+	// for(int j = start_x / 1000; j < end_x / 1000; i++) {
+	// 	plat_pos[j].push_back(i);
+	// }
+	platform[0] = Platform(0.0, 0.0, 0.0, 1000.0, 200.0, 0);	// Main Platform
+	platform[1] = Platform(1200.0, 0.0, 0.0, 1000.0, 200.0, 1);
+	platform[2] = Platform(1400.0, 300.0, 0.0, 100.0, 50.0, 2);
+	// platform[3] = Platform(0.0, 1400.0, 0.0, 10000.0, 50.0, 3);
 
-	platform[0] = Platform(0.0, 0.0, 0.0, 1000.0, 200.0);
-	// platform[1] = Platform(1200.0, 0.0, 0.0, 1000.0, 200.0);
+	// }
 }
 
 void drawLevel() {
@@ -62,6 +63,33 @@ void level1CollisionDetection() {
 	}
 	// cout << "\n";
 	for(int i = 0; i < nPlatform; i++) {
-		platform[i].platformCollision();
+		// cout << "Platform " << i << "\n";
+		cout << r2d3_x << "\t" << platform[i].xx << ", " << platform[i].xx + platform[i].length << "\t" << right_dir << "\n";
+		// if(right_dir == true && r2d3_x + 207 == platform[i].xx) {
+		//
+		// }
+		// if((right_dir == true && r2d3_x >= platform[i].xx && r2d3_x - 207 ) || (right_dir == false && r2d3_x - 207 <= platform[i].xx + platform[i].length)) {
+		// float range;
+		// if(right_dir == true) {
+		// 	range = r2d3_x + 207;
+		// } else{
+		// 	range = r2d3_x - 207;
+		// }
+		float pxx, pxxl;
+		pxx = platform[i].xx;
+		pxxl = platform[i].xx + platform[i].length;
+		if(right_dir == true) {
+			if((r2d3_x + 25 >= pxx && r2d3_x - 25 <= pxxl) || ((pxx >= r2d3_x && pxx <= r2d3_x + 207) || (pxxl >= r2d3_x && pxxl <= r2d3_x + 207))) {
+				platform[i].platformCollision();
+				cout << i << "\n";
+			}
+		} else {
+			if((r2d3_x + 25 >= pxx && r2d3_x - 25 <= pxxl) || ((pxx <= r2d3_x && pxx >= r2d3_x - 207) || (pxxl <= r2d3_x && pxxl >= r2d3_x - 207))) {
+				platform[i].platformCollision();
+				cout << i << "\n";
+			}
+		}
+		// platform[i].platformCollision();
+		// cout << i << "\n";
 	}
 }
