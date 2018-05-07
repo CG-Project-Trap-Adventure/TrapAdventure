@@ -24,6 +24,9 @@ void setLevel() {
 		// }
 		platform[i] = Platform(0.0, 0.0, 0.0, 1000.0, 200.0);	// Main Platform
 	}
+
+	platform[0] = Platform(0.0, 0.0, 0.0, 1000.0, 200.0);
+	// platform[1] = Platform(1200.0, 0.0, 0.0, 1000.0, 200.0);
 }
 
 void drawLevel() {
