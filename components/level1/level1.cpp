@@ -5,7 +5,7 @@
 #include "../../states.h"
 
 const int nSpike = 100;
-const int nPlatform = 3;
+const int nPlatform = 6;
 static Platform platform[nPlatform];
 static Spike spike[nSpike];
 
@@ -22,9 +22,12 @@ void setLevel() {
 	// for(int j = start_x / 1000; j < end_x / 1000; i++) {
 	// 	plat_pos[j].push_back(i);
 	// }
-	platform[0] = Platform(0.0, 0.0, 0.0, 1000.0, 200.0, 0);	// Main Platform
-	platform[1] = Platform(1200.0, 0.0, 0.0, 1000.0, 200.0, 1);
-	platform[2] = Platform(1400.0, 300.0, 0.0, 100.0, 50.0, 2);
+	platform[0] = Platform(0.0, 150.0, 0.0, 1000.0, 50.0, 0);	// Main Platform
+	platform[4] = Platform(1200.0, 150.0, 0.0, 350.0, 50.0, 4);
+	platform[3] = Platform(1400.0, 250.0, 0.0, 100.0, 10.0, 3);
+	platform[2] = Platform(1800.0, 280.0, 0.0, 50.0, 10.0, 2);		// Till the time I didn't put this it was working
+	platform[1] = Platform(1550.0, 320.0, 0.0, 100.0, 10.0, 1);
+	platform[5] = Platform(2200.0, 150.0, 0.0, 1000.0, 50.0, 5);
 	// platform[3] = Platform(0.0, 1400.0, 0.0, 10000.0, 50.0, 3);
 
 	// }
@@ -35,7 +38,15 @@ void drawLevel() {
 	glColor3f(0.545, 0.271, 0.075);     //SaddleBrown
 	// draw.drawBox(0.0, 0.0, 0.0, 10000.0, 200.0);
 	for(int i = 0; i < nPlatform; i++) {
-		platform[i].drawPlatform();
+		if(insane == true)
+		{
+			if(i == 2){;}
+			else
+				platform[i].drawPlatform();
+		}
+		else{
+			platform[i].drawPlatform();
+		}
 	}
 	glColor3f(0.663, 0.663, 0.663);     //DarkGray
 	for(int i = 0; i < nSpike; i++) {
@@ -79,12 +90,12 @@ void level1CollisionDetection() {
 		pxx = platform[i].xx;
 		pxxl = platform[i].xx + platform[i].length;
 		if(right_dir == true) {
-			if((r2d3_x + 25 >= pxx && r2d3_x - 25 <= pxxl) || ((pxx >= r2d3_x && pxx <= r2d3_x + 207) || (pxxl >= r2d3_x && pxxl <= r2d3_x + 207))) {
+			if((r2d3_x + 25 >= pxx - 207 && r2d3_x - 25 <= pxxl + 207) ) {
 				platform[i].platformCollision();
 				cout << i << "\n";
 			}
 		} else {
-			if((r2d3_x + 25 >= pxx && r2d3_x - 25 <= pxxl) || ((pxx <= r2d3_x && pxx >= r2d3_x - 207) || (pxxl <= r2d3_x && pxxl >= r2d3_x - 207))) {
+			if((r2d3_x + 25 >= pxx - 207 && r2d3_x - 25 <= pxxl + 207)) {
 				platform[i].platformCollision();
 				cout << i << "\n";
 			}

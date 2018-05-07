@@ -16,13 +16,14 @@ Platform::Platform(int x, int y, int z, int l, int h, int id) {
 
 /*
 Shape of you(r platform)
-II
+				II
 (xx, yy+h)					 (xx+w, yy+h)
 	*****************************
 I	*****************************	III
 	*****************************
 (xx, yy)					 (xx+w, yy)
-IV
+				
+				IV
 */
 
 void Platform::drawPlatform() {

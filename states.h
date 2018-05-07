@@ -26,6 +26,7 @@ extern float max_y;
 extern bool block_r;
 extern bool block_l;
 extern bool safe;		// R2D3 is on platform
+extern bool insane;		// If insane mode is selected or not
 
 enum ScreenStates {
 	_intro_screen = 0,
