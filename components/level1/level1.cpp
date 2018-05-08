@@ -80,7 +80,7 @@ void level1CollisionDetection() {
 			// continue;
 		// }
 		// cout << "Platform " << i << "\n";
-		cout << r2d3_x << "\t" << platform[i].xx << ", " << platform[i].xx + platform[i].length << "\t" << right_dir << "\n";
+		cout << r2d3_y << "\t" << platform[i].xx << ", " << platform[i].xx + platform[i].length << "\t" << right_dir << "\n";
 		// if(right_dir == true && r2d3_x + 207 == platform[i].xx) {
 		//
 		// }

@@ -39,7 +39,7 @@ void Platform::platformCollision(){
 	int flag;
 	// max_y = min_y + 125;	// We're resetting the value so that R2D3 can jump to original height once it is not in sector 4
 
-	if(r2d3_y - 20 <= 0.0) {
+	if(r2d3_y - 21 <= 0.0) {
 		screen = _death_screen;
 		// cout << "Death\n";
 	}
