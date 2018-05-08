@@ -96,7 +96,7 @@ void display(void) {
 		deathScreen.drawScreen();
 	}
 
-	r2d3_x = win_x + 1366.0 / 2.0;
+	r2d3_x = win_x + 1364.0 / 2.0;
 	r2d3_y = win_y;
 
 	glutSwapBuffers();
@@ -142,7 +142,8 @@ void keys(int key, int xx, int yy) {
 			r2d3.setKey(key);
 		}
 		if(key == GLUT_KEY_UP) {
-			cout << win_y << " UP \n";
+			// cout << win_y << " UP \n";
+			up_key = true;
 		}
 	}
 }
@@ -181,6 +182,7 @@ void myidle() {
 		if(win_y - 21 == min_y) {
 			key_map[GLUT_KEY_UP] = false;
 			down_dir = false;
+			up_key = false;
 		}
 
 	} else {
@@ -192,9 +194,11 @@ void myidle() {
 	}
 
 	// Collision detection of the level1
-	safe = false;
-	max_y = min_y + 125;
+	// safe = false;
+	// max_y = min_y + 125;
+	min_y = 0;
 	level1CollisionDetection();
+	// up_key = false;
 
 	// if(win_y > min_y) {
 	// 	if(win_y - 25 != min_y)

@@ -24,10 +24,11 @@ void setLevel() {
 	// }
 	platform[0] = Platform(0.0, 150.0, 0.0, 1000.0, 50.0, 0);	// Main Platform
 	platform[4] = Platform(1200.0, 150.0, 0.0, 350.0, 50.0, 4);
-	platform[3] = Platform(1400.0, 250.0, 0.0, 100.0, 10.0, 3);
-	platform[2] = Platform(1800.0, 280.0, 0.0, 50.0, 10.0, 2);		// Till the time I didn't put this it was working
-	platform[1] = Platform(1550.0, 320.0, 0.0, 100.0, 10.0, 1);
-	platform[5] = Platform(2200.0, 150.0, 0.0, 1000.0, 50.0, 5);
+	platform[3] = Platform(1400.0, 252.0, 0.0, 100.0, 8.0, 3);
+	platform[2] = Platform(1800.0, 280.0, 0.0, 50.0, 8.0, 2);		// Till the time I didn't put this it was working
+	platform[1] = Platform(1550.0, 320.0, 0.0, 100.0, 8.0, 1);
+	platform[5] = Platform(2100.0, 150.0, 0.0, 1000.0, 50.0, 5);
+	// platform[6] = Platform(0.0, -1.0, 0.0, 10000.0, 3.0, 6);
 	// platform[3] = Platform(0.0, 1400.0, 0.0, 10000.0, 50.0, 3);
 
 	// }
@@ -38,15 +39,15 @@ void drawLevel() {
 	glColor3f(0.545, 0.271, 0.075);     //SaddleBrown
 	// draw.drawBox(0.0, 0.0, 0.0, 10000.0, 200.0);
 	for(int i = 0; i < nPlatform; i++) {
-		if(insane == true)
-		{
-			if(i == 2){;}
-			else
-				platform[i].drawPlatform();
-		}
-		else{
+		// if(insane == true)
+		// {
+		// 	if(i == 2){;}
+		// 	else
+		// 		platform[i].drawPlatform();
+		// }
+		// else{
 			platform[i].drawPlatform();
-		}
+		// }
 	}
 	glColor3f(0.663, 0.663, 0.663);     //DarkGray
 	for(int i = 0; i < nSpike; i++) {
@@ -73,7 +74,11 @@ void level1CollisionDetection() {
 		// spike[vit].spikeCollision();
 	}
 	// cout << "\n";
+	// platform[ppid].platformCollision();
 	for(int i = 0; i < nPlatform; i++) {
+		// if(i == ppid) {
+			// continue;
+		// }
 		// cout << "Platform " << i << "\n";
 		cout << r2d3_x << "\t" << platform[i].xx << ", " << platform[i].xx + platform[i].length << "\t" << right_dir << "\n";
 		// if(right_dir == true && r2d3_x + 207 == platform[i].xx) {
@@ -90,7 +95,8 @@ void level1CollisionDetection() {
 		pxx = platform[i].xx;
 		pxxl = platform[i].xx + platform[i].length;
 		if(right_dir == true) {
-			if((r2d3_x + 25 >= pxx - 207 && r2d3_x - 25 <= pxxl + 207) ) {
+			// if((r2d3_x + 25 >= pxx - 207 && r2d3_x - 25 <= pxxl + 207) ) {
+			if((r2d3_x + 25 == platform[i].xx) || (r2d3_x + 25 >= platform[i].xx && r2d3_x - 25 <= platform[i].xx + platform[i].length)) {
 				platform[i].platformCollision();
 				cout << i << "\n";
 			}
