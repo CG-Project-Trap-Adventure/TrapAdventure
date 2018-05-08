@@ -3,10 +3,10 @@
 #include "../../states.h"
 
 R2D3::R2D3() {
-	radius = 21;
+	radius = 20;
 	cap_radius = 18;
-	rangle = 19.4712;
-	arm_l = 25;
+	rangle = 20.4873;
+	arm_l = 24;
 	lastKey = GLUT_KEY_RIGHT;
 }
 
