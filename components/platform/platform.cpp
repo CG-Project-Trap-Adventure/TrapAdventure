@@ -50,13 +50,14 @@ void Platform::platformCollision(){
 	}
 	// cout<<r2d3_x<<","<<r2d3_y<<endl;
 	// cout<<(r2d3_x - 24 < xx + length && r2d3_x - 24 > xx + (length/2) && r2d3_y - 20 <= yy + height && r2d3_y + 40 >= yy)<<endl;
-	if(r2d3_x - 24 < xx + length && r2d3_x - 24 > xx + (length/2) && r2d3_y - 20 <= yy + height && r2d3_y + 40 >= yy) {
+	if(r2d3_x - 24 < xx + length && r2d3_x - 24 > xx + (length/2) && r2d3_y - 20 < yy + height && r2d3_y + 40 >= yy) {
 		win_x = xx + length + 24 - (win_w / 2.0);
-		cout<<"Going right!!!"<<endl;
+		cout << r2d3_x << "\t" << r2d3_y << "\t" << xx << " + " << length << "\t" << yy << " + " << height << "\t" << "Going right!!!" << "\n";
 	}
 
 	// Sector 2
 	if(r2d3_y - 20 >= yy + height && r2d3_x + 24 >= xx && r2d3_x - 24 <= xx + length) {
+		cout << "Sector 2\t" << min_y << "\n";
 		min_y = (min_y < (yy + height)) ? (yy + height) : min_y;
 		if(r2d3_y - 20 == yy + height + 1) {
 			max_y = min_y + 124;

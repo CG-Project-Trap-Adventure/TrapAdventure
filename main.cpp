@@ -76,6 +76,7 @@ void display(void) {
 		}
 		drawLevel();
 
+		cout << win_x + 1364.0 / 2.0 << "\t" << win_y << "\n";
 		r2d3.draw(win_x + 1364.0 / 2.0, win_y, 0);
 
 		// Not required !!!!! XD
@@ -164,48 +165,49 @@ void myReshape(int w, int h) {
 }
 
 void myidle() {
-	// To calculate the jumping of r2d3
-	if(key_map[GLUT_KEY_UP] == true) {
-		// cout << "UP key true\n";
-		if(win_y >= max_y) {
-			// cout << "Down started" << "\n";
-			down_dir = true;
-		}
+	if(screen == _game_screen) {
+		// To calculate the jumping of r2d3
+		if(key_map[GLUT_KEY_UP] == true) {
+			// cout << "UP key true\n";
+			if(win_y >= max_y) {
+				// cout << "Down started" << "\n";
+				down_dir = true;
+			}
 
-		if(down_dir == false) {
-			win_y += jump_speed;
+			if(down_dir == false) {
+				win_y += jump_speed;
+			} else {
+				win_y -= jump_speed;
+			}
+			// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
+
+			if(win_y - 21 == min_y) {
+				key_map[GLUT_KEY_UP] = false;
+				down_dir = false;
+				up_key = false;
+			}
+
 		} else {
-			win_y -= jump_speed;
-		}
-		// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
-
-		if(win_y - 21 == min_y) {
-			key_map[GLUT_KEY_UP] = false;
-			down_dir = false;
-			up_key = false;
+			if(win_y - 21 > min_y) {
+				// cout << "SPCL case " << win_y << " " << min_y << "\n";
+				key_map[GLUT_KEY_UP] = true;
+				down_dir = true;
+			}
 		}
 
-	} else {
-		if(win_y - 21 > min_y) {
-			// cout << "SPCL case " << win_y << " " << min_y << "\n";
-			key_map[GLUT_KEY_UP] = true;
-			down_dir = true;
-		}
+		// Collision detection of the level1
+		// safe = false;
+		// max_y = min_y + 125;
+		min_y = 0;
+		level1CollisionDetection();
+		// up_key = false;
+
+		// if(win_y > min_y) {
+		// 	if(win_y - 25 != min_y)
+		// 		key_map[GLUT_KEY_UP] = true;
+		// 	down_dir = 1;
+		// }
 	}
-
-	// Collision detection of the level1
-	// safe = false;
-	// max_y = min_y + 125;
-	min_y = 0;
-	level1CollisionDetection();
-	// up_key = false;
-
-	// if(win_y > min_y) {
-	// 	if(win_y - 25 != min_y)
-	// 		key_map[GLUT_KEY_UP] = true;
-	// 	down_dir = 1;
-	// }
-
 	glutPostRedisplay();
 }
 
