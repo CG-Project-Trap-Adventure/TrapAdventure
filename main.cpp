@@ -181,7 +181,7 @@ void myidle() {
 			}
 			// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
 
-			if(win_y - 21 == min_y) {
+			if(win_y - 20 == min_y) {
 				key_map[GLUT_KEY_UP] = false;
 				down_dir = false;
 				up_key = false;
