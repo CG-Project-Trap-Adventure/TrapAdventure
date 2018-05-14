@@ -76,7 +76,7 @@ void display(void) {
 		}
 		drawLevel();
 
-		r2d3.draw(win_x + win_w / 2.0, win_y, 0);
+		r2d3.draw(win_x + 1364.0 / 2.0, win_y, 0);
 
 		// Not required !!!!! XD
 		// if(key_map[GLUT_KEY_UP] == false) {
@@ -112,7 +112,7 @@ void mouse(int btn, int state, int xx, int yy) {
 				screen = _inst_screen;
 			}
 			else {
-				cout << "Outside button\n";
+				// cout << "Outside button\n";
 			}
 			break;
 		}
@@ -158,7 +158,7 @@ void myReshape(int w, int h) {
 	// printf("(%d,%d)\n", w, h);
 	win_h = h;
 	win_w = w;
-	cout << win_h << "\t" << win_w << "\n";
+	// cout << win_h << "\t" << win_w << "\n";
 	glViewport(0,0,w,h);
 	glutPostRedisplay();
 }
@@ -168,7 +168,7 @@ void myidle() {
 	if(key_map[GLUT_KEY_UP] == true) {
 		// cout << "UP key true\n";
 		if(win_y >= max_y) {
-			cout << "Down started" << "\n";
+			// cout << "Down started" << "\n";
 			down_dir = true;
 		}
 
