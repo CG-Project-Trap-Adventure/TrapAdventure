@@ -8,7 +8,7 @@
 // 	_game_screen
 // };
 //
-ScreenStates screen = _game_screen;
+ScreenStates screen = _intro_screen;
 
 float win_w = 1364.0;
 float win_h = 768.0;
@@ -28,3 +28,8 @@ bool safe = true;
 int ppid = 0;
 bool up_key = true;
 bool insane = true;
+int score = 0;
+int score_inc = 2;
+int score_dec = 1;
+time_t prev_mov_time = 0;
+time_t mov_delay_time = 1;

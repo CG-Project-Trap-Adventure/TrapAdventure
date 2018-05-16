@@ -1,5 +1,6 @@
 #include <GL/glut.h>
 #include <map>
+#include <time.h>
 #include "components/trapadv.h"
 #include "states.h"
 
@@ -7,7 +8,9 @@
 IntroScreen introScreen = IntroScreen();
 InstScreen instScreen = InstScreen();
 DeathScreen deathScreen = DeathScreen();
+WinScreen winScreen = WinScreen();
 R2D3 r2d3 = R2D3();
+Score gameScore = Score();
 // static int lastKey = GLUT_KEY_RIGHT;
 
 GLint x = 20, y = 20;
@@ -45,22 +48,48 @@ void display(void) {
 
 	switch(screen) {
 		case _intro_screen:
+		score = 0;
 		introScreen.drawScreen();
 		break;
 
 		case _inst_screen:
+		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		score = 0;
+		win_x = 0;
+		win_y = 325.0;
+		min_y = 200;
+		max_y = min_y + 124;
+		speed = 1 * relative_constant;
+		jump_speed = 1 * relative_constant;
+		level1_loaded = 0;
 		instScreen.drawScreen();
+		key_map[GLUT_KEY_LEFT] = false;
+		key_map[GLUT_KEY_RIGHT] = false;
+		key_map[GLUT_KEY_UP] = false;
 		break;
 
 		case _game_screen:
 		glutSetCursor(GLUT_CURSOR_NONE);
 		if(key_map[GLUT_KEY_RIGHT] && block_r == false) {
 			win_x += speed;
+			score += score_inc;
+			prev_mov_time = 0;
 			right_dir = true;
 		}
 		if(key_map[GLUT_KEY_LEFT] && block_l == false) {
 			win_x -= speed;
+			score -= score_dec;
+			prev_mov_time = 0;
 			right_dir = false;
+		}
+		if(!(key_map[GLUT_KEY_RIGHT] && key_map[GLUT_KEY_LEFT])) {
+			// standing still
+			if(!(prev_mov_time))
+				prev_mov_time = time(NULL);
+			if(time(NULL) - prev_mov_time >= mov_delay_time) {
+				prev_mov_time = time(NULL);
+				score -= score_dec;
+			}
 		}
 		block_r = block_l = false;
 
@@ -77,6 +106,7 @@ void display(void) {
 		drawLevel();
 
 		r2d3.draw(win_x + 1364.0 / 2.0, win_y, 0);
+		gameScore.drawScore();
 
 		// Not required !!!!! XD
 		// if(key_map[GLUT_KEY_UP] == false) {
@@ -94,6 +124,14 @@ void display(void) {
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		deathScreen.drawScreen();
+
+		case _win_screen:
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0.0, win_w, 0.0, win_h, -10.0, 10.0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		winScreen.drawScreen();
 	}
 
 	r2d3_x = win_x + 1364.0 / 2.0;
@@ -133,6 +171,11 @@ void kbd(unsigned char key, int xx, int yy) {
 	if(key == 'q') {		// Press q to quit
 		glutDestroyWindow(window_id);
 	}
+	if(screen == _death_screen || screen == _win_screen){
+		if(key == 'r') {	// Press r to replay
+			screen = _inst_screen;
+		}
+	}
 }
 
 void keys(int key, int xx, int yy) {
@@ -164,48 +207,49 @@ void myReshape(int w, int h) {
 }
 
 void myidle() {
-	// To calculate the jumping of r2d3
-	if(key_map[GLUT_KEY_UP] == true) {
-		// cout << "UP key true\n";
-		if(win_y >= max_y) {
-			// cout << "Down started" << "\n";
-			down_dir = true;
-		}
+	if(screen == _game_screen)
+	{	// To calculate the jumping of r2d3
+		if(key_map[GLUT_KEY_UP] == true) {
+			// cout << "UP key true\n";
+			if(win_y >= max_y) {
+				// cout << "Down started" << "\n";
+				down_dir = true;
+			}
 
-		if(down_dir == false) {
-			win_y += jump_speed;
+			if(down_dir == false) {
+				win_y += jump_speed;
+			} else {
+				win_y -= jump_speed;
+			}
+			// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
+
+			if(win_y - 21 == min_y) {
+				key_map[GLUT_KEY_UP] = false;
+				down_dir = false;
+				up_key = false;
+			}
+
 		} else {
-			win_y -= jump_speed;
-		}
-		// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
-
-		if(win_y - 21 == min_y) {
-			key_map[GLUT_KEY_UP] = false;
-			down_dir = false;
-			up_key = false;
+			if(win_y - 21 > min_y) {
+				// cout << "SPCL case " << win_y << " " << min_y << "\n";
+				key_map[GLUT_KEY_UP] = true;
+				down_dir = true;
+			}
 		}
 
-	} else {
-		if(win_y - 21 > min_y) {
-			// cout << "SPCL case " << win_y << " " << min_y << "\n";
-			key_map[GLUT_KEY_UP] = true;
-			down_dir = true;
-		}
+		// Collision detection of the level1
+		// safe = false;
+		// max_y = min_y + 125;
+		min_y = 0;
+		level1CollisionDetection();
+		// up_key = false;
+
+		// if(win_y > min_y) {
+		// 	if(win_y - 25 != min_y)
+		// 		key_map[GLUT_KEY_UP] = true;
+		// 	down_dir = 1;
+		// }
 	}
-
-	// Collision detection of the level1
-	// safe = false;
-	// max_y = min_y + 125;
-	min_y = 0;
-	level1CollisionDetection();
-	// up_key = false;
-
-	// if(win_y > min_y) {
-	// 	if(win_y - 25 != min_y)
-	// 		key_map[GLUT_KEY_UP] = true;
-	// 	down_dir = 1;
-	// }
-
 	glutPostRedisplay();
 }
 

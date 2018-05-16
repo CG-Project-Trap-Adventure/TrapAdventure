@@ -32,10 +32,20 @@ DEATH_SCREEN_H = components/death_screen/death_screen.h
 DEATH_SCREEN_O = components/death_screen/death_screen.o
 FINAL_BUILD += $(DEATH_SCREEN_O)
 
+WIN_SCREEN_CPP = components/win_screen/win_screen.cpp
+WIN_SCREEN_H = components/win_screen/win_screen.h
+WIN_SCREEN_O = components/win_screen/win_screen.o
+FINAL_BUILD += $(WIN_SCREEN_O)
+
 DRAW_CPP = components/draw/draw.cpp
 DRAW_H = components/draw/draw.h
 DRAW_O = components/draw/draw.o
 FINAL_BUILD += $(DRAW_O)
+
+SCORE_CPP = components/score/score.cpp
+SCORE_H = components/score/score.h
+SCORE_O = components/score/score.o
+FINAL_BUILD += $(SCORE_O)
 
 LEVEL1_CPP = components/level1/level1.cpp
 LEVEL1_H = components/level1/level1.h
@@ -52,7 +62,7 @@ STATES_CPP = states.cpp
 STATES_O = states.o
 FINAL_BUILD += $(STATES_O)
 
-all: states draw intro_screen inst_screen spike platform level1 main run
+all: states draw intro_screen inst_screen win_screen score spike platform level1 main run
 
 run:
 	./$(MAIN_O)
@@ -80,6 +90,9 @@ inst_screen: $(INST_SCREEN_H) $(INST_SCREEN_CPP)
 death_screen: $(DEATH_SCREEN_H) $(DEATH_SCREEN_CPP)
 	$(CXX) -c -o $(DEATH_SCREEN_O) $(DEATH_SCREEN_CPP)
 
+win_screen: $(WIN_SCREEN_H) $(WIN_SCREEN_CPP)
+	$(CXX) -c -o $(WIN_SCREEN_O) $(WIN_SCREEN_CPP)
+
 draw: $(DRAW_H) $(DRAW_CPP)
 	$(CXX) -c -o $(DRAW_O) $(DRAW_CPP)
 
@@ -91,6 +104,9 @@ r2d3: $(R2D3_CPP) $(R2D3_H)
 
 states: $(STATES_CPP) $(STATES_H)
 	$(CXX) -c -o $(STATES_O) $(STATES_CPP)
+
+score: $(SCORE_CPP) $(SCORE_H)
+	$(CXX) -c -o $(SCORE_O) $(SCORE_CPP)
 
 clean:
 	echo $(FINAL_BUILD)

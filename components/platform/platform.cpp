@@ -85,6 +85,21 @@ void Platform::platformCollision(){
 					xx += speed;
 			}
 		}
+		
+		else if(pid == 11) {
+			static bool check = false;
+			if(r2d3_y - 20 == yy + height + 1) {
+				check = true;
+			}
+			if(xx < 5500 && check) {
+				xx += speed;
+			}
+		}
+		else if(pid == 13) {
+			if(r2d3_y - 20 == yy + height + 1) {
+				screen = _win_screen;
+			}
+		}
 	}
 	// Sector 4
 	else if(r2d3_y + 40 < yy && r2d3_x + 24 > xx && r2d3_x - 24 <= xx + length) {

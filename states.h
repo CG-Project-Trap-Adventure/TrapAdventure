@@ -29,12 +29,18 @@ extern bool safe;		// R2D3 is on platform
 extern bool insane;		// If insane mode is selected or not
 extern int ppid;		// Priority Platdorm ID
 extern bool up_key;
+extern int score;
+extern int score_inc;
+extern int score_dec;
+extern time_t prev_mov_time;
+extern time_t mov_delay_time;
 
 enum ScreenStates {
 	_intro_screen = 0,
 	_inst_screen,
 	_game_screen,
-	_death_screen
+	_death_screen,
+	_win_screen
 };
 extern ScreenStates screen;
 
