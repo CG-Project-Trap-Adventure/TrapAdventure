@@ -59,7 +59,7 @@ void Platform::platformCollision(){
 	if(r2d3_y - 20 >= yy + height && r2d3_x + 24 >= xx && r2d3_x - 24 <= xx + length) {
 		min_y = (min_y < (yy + height)) ? (yy + height) : min_y;
 		if(r2d3_y - 20 == yy + height + 1) {
-			max_y = min_y + 124;
+			max_y = min_y + 160;
 		}
 
 		if (!(prev_time))
@@ -71,6 +71,20 @@ void Platform::platformCollision(){
 		//For Platform 7
 		if(pid == 7)
 			xx += 0.5 * speed;
+		
+		else if(pid == 8) {
+			yy -= jump_speed;
+		}
+
+		else if(pid == 10) {
+			int move_time = 3;
+			if (!(prev_time))
+				prev_time = time(NULL);
+			if(time(NULL) - prev_time >= move_time) {
+				if(xx < 4400.0)
+					xx += speed;
+			}
+		}
 	}
 	// Sector 4
 	else if(r2d3_y + 40 < yy && r2d3_x + 24 > xx && r2d3_x - 24 <= xx + length) {

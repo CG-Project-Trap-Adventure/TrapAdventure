@@ -4,8 +4,8 @@
 #include "../spike/spike.h"
 #include "../../states.h"
 
-const int nSpike = 3;
-const int nPlatform = 8;
+const int nSpike = 5;
+const int nPlatform = 11;
 static Platform platform[nPlatform];
 static Spike spike[nSpike];
 
@@ -20,7 +20,9 @@ void setLevel() {
 
 	spike[0] = Spike(500, 200, 0.0, 0);
 	spike[1] = Spike(1250, 200, 0.0, 1, false, 1);
-	spike[2] = Spike(2000, 200, 0.0, 1, false, 2);
+	spike[2] = Spike(2000, 200, 0.0, 2, false, 2);
+	spike[3] = Spike(4100, 200, 0.0, 3, false, 99);
+	spike[4] = Spike(4980, 200, 0.0, 4, false, 99);
 
 	for(int i = 0; i < nSpike; i++) {
 		spike_pos[spike[i].xx / 1000].push_back(i);
@@ -37,7 +39,10 @@ void setLevel() {
 	platform[1] = Platform(1550.0, 320.0, 0.0, 100.0, 8.0, 1);
 	platform[5] = Platform(1900.0, 0.0, 0.0, 1000.0, 200.0, 5);
 	platform[6] = Platform(0.0, 0.0, 0.0, 20.0, 10000.0, 6);
-	platform[7] = Platform(3000.0, 252.0, 0.0, 100.0, 8.0, 7);
+	platform[7] = Platform(3000.0, 252.0, 0.0, 10.0, 8.0, 7);
+	platform[8] = Platform(4000.0, 0.0, 0.0, 100.0, 200.0, 8);
+	platform[9] = Platform(4100.0, 0.0, 0.0, 20.0, 200.0, 9);
+	platform[10] = Platform(4100.0, 0.0, 0.0, 600.0, 200.0, 10);
 	// platform[3] = Platform(0.0, 1400.0, 0.0, 10000.0, 50.0, 3);
 
 	// }

@@ -8,11 +8,11 @@
 // 	_game_screen
 // };
 //
-ScreenStates screen = _intro_screen;
+ScreenStates screen = _game_screen;
 
 float win_w = 1364.0;
 float win_h = 768.0;
-float win_x = 1800.0;
+float win_x = 0.0;
 float win_y = 325.0;		// Just for now.... Later thinking of using an array with x and y values of every change in height
 float min_y = 200;
 float max_y = min_y + 124;

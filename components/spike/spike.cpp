@@ -31,6 +31,8 @@ Spike::Spike(int x, int y, int z, int id, bool vis, time_t t){
 	visible = vis;
 	show_time = t;
 	prev_time = 0;
+	original_time.tv_sec = 0;
+	time_now.tv_sec = 0;
 }
 
 /*
@@ -126,15 +128,19 @@ void Spike::spikeCollision() {
 			root1 = (-b + sqrt(delta)) / (2 * a);
 			root2 = (-b - sqrt(delta)) / (2 * a);
 			if((root1 <= yy + h && root1 >= yy) || (root2 <= yy + h && root2 >= yy)) {
-				int time_delay = 1;
-				struct timeval original_time, time_now;
-				gettimeofday(&original_time, NULL);
-				while(true) {
+
+				visible = true;
+				speed = 0;
+				jump_speed = 0;
+				int time_delay = 2;
+				if(!original_time.tv_sec)
+					gettimeofday(&original_time, NULL);
+				else {
 					gettimeofday(&time_now, NULL);
-					if(time_now.tv_sec - original_time.tv_sec >=time_delay)
-						break;
+					if(time_now.tv_sec - original_time.tv_sec >=time_delay){
+						screen = _death_screen;
+					}
 				}
-				screen = _death_screen;
 				// for(auto i = 0; i < 999999999; i++);
 			}
 		}

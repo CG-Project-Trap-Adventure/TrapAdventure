@@ -13,6 +13,8 @@ class Spike{
         bool visible;
         time_t show_time;
         time_t prev_time;
+        struct timeval original_time;
+        struct timeval time_now;
 
     // public:
         Spike();
