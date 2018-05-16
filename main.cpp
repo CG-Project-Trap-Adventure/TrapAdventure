@@ -105,6 +105,7 @@ void display(void) {
 		}
 		drawLevel();
 
+		cout << win_x + 1364.0 / 2.0 << "\t" << win_y << "\n";
 		r2d3.draw(win_x + 1364.0 / 2.0, win_y, 0);
 		gameScore.drawScore();
 
@@ -223,7 +224,7 @@ void myidle() {
 			}
 			// cout << (win_x + win_w / 2.0) << ", " << win_y << "\n";
 
-			if(win_y - 21 == min_y) {
+			if(win_y - 20 == min_y) {
 				key_map[GLUT_KEY_UP] = false;
 				down_dir = false;
 				up_key = false;
