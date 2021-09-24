@@ -2,13 +2,24 @@
 #include <stdio.h>
 
 class Spike{
-    private:
+    public:
         int length;
         int height;
+        int xx;
+        int yy;
+        int zz;
+		int sid;
         GLfloat color[3];
-    
-    public:
+        bool visible;
+        time_t show_time;
+        time_t prev_time;
+        struct timeval original_time;
+        struct timeval time_now;
+
+    // public:
         Spike();
-        Spike(int, int);
-        void drawSpike(int, int);
+        Spike(int x, int y, int z, int l, int h);
+        Spike(int x, int y, int z, int id, bool vis = true, time_t t = 0);
+        void drawSpike();
+        void spikeCollision();
 };
