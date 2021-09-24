@@ -1,6 +1,5 @@
 #include <GL/glut.h>
 #include <iostream>
-#include <time.h>
 
 using namespace std;
 
@@ -13,12 +12,10 @@ public:
 	int yy;
 	int zz;
 	int pid;
-	bool visible;
-	int show_time;
-	time_t prev_time;
+	const int RIGHT = 2, LEFT = 1, TOP = 8, BOTTOM = 4;
 // public:
 	Platform();
-	Platform(int x, int y, int z, int l, int h, int id, bool vis = true, time_t t = 0);
+	Platform(int x, int y, int z, int l, int h, int id);
 	void drawPlatform();
 	void platformCollision();
 };

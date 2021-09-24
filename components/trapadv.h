@@ -2,4 +2,11 @@
 #include "intro_screen/intro_screen.h"
 #include "draw/draw.h"
 #include "inst_screen/inst_screen.h"
-#include "game_screen/game_screen.h"
+#include "level1/level1.h"
+#include "r2d3/r2d3.h"
+#include "platform/platform.h"
+#include "death_screen/death_screen.h"
+#include "win_screen/win_screen.h"
+#include "score/score.h"
+
+// int lastKey;    // To track the last key that was pressed
